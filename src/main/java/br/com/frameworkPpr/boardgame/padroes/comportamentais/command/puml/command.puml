@@ -1,0 +1,20 @@
+@startuml
+skinparam linetype ortho
+
+interface Command {
+    + execute()
+    + undo()
+}
+
+class MovePieceCommand {
+    - Tabuleiro tabuleiro
+    - Posicao origem
+    - Posicao destino
+    + MovePieceCommand(Tabuleiro, Posicao, Posicao)
+    + execute()
+    + undo()
+}
+
+MovePieceCommand ..|> Command
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+
+skinparam line ortho
+class TabuleiroProxySecurity {
+    - int linhas
+    - int colunas
+    - static TabuleiroProxySecurity proxyInstance
+    - boolean jogoIniciado
+    --
+    ~ TabuleiroProxySecurity()
+    + static TabuleiroProxySecurity getInstance()
+    - void verificarJogoIniciado()
+    + void inicializarCasas(int linhas, int colunas)
+    + void colocarPeca(Peca peca, Posicao posicao, Map<Posicao, Casa> casas)
+    + void moverPeca(Posicao origem, Posicao destino, Map<Posicao, Casa> casas)
+    + void removerPeca(Posicao posicao)
+    - boolean posicaoValida(int linha, int coluna)
+    - boolean posicaoValida(Posicao posicao)
+    - int getLinhas()
+    - void setLinhas(int linhas)
+    - int getColunas()
+    - void setColunas(int colunas)
+    - static TabuleiroProxySecurity getProxyInstance()
+    - static void setProxyInstance(TabuleiroProxySecurity proxyInstance)
+    - boolean isJogoIniciado()
+    - void setJogoIniciado(boolean jogoIniciado)
+}
+@enduml

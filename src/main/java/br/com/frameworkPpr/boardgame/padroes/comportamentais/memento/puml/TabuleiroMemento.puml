@@ -1,0 +1,21 @@
+@startuml
+class Tabuleiro {
+    +criarMemento(): TabuleiroMemento
+    +restaurarMemento(m: TabuleiroMemento)
+}
+
+class TabuleiroMemento {
+    +getCasasSnapshot(): Map
+    +getPecasPorTimeSnapshot(): Map
+}
+
+class HistoricoTabuleiro {
+    +salvar(m: TabuleiroMemento)
+    +desfazer(): TabuleiroMemento
+    +refazer(): TabuleiroMemento
+}
+
+Tabuleiro "1" o-- "muitos" TabuleiroMemento : cria/restaura
+HistoricoTabuleiro "1" o-- "muitos" TabuleiroMemento : armazena
+
+@enduml

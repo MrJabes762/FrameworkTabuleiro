@@ -1,0 +1,28 @@
+@startuml
+skinparam linetype ortho
+
+class Time {
+    - String nome
+    - static Map<String, Time> times
+    - List<Peca> pecas
+    + getInstance(String nome): Time
+    + adicionarPecasAoTime(Peca): boolean
+    + getPecasDoTime(): List<Peca>
+    + removerPecaDoTime(Peca): boolean
+    + getQuantidadePecasDoTime(): int
+    + toString(): String
+}
+
+class Tabuleiro {
+    - Map<Time, Integer> pecasPorTime
+    + registrarTime(String nomeTime)
+}
+
+class Peca {
+    - String nome
+    - Time time
+}
+
+Time <.. Peca : usada por
+Tabuleiro --> Time : registra/usa
+@enduml

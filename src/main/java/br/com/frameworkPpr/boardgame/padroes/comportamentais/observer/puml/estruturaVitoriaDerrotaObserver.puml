@@ -1,0 +1,41 @@
+@startuml
+interface Observer {
+    +update(evento: String)
+}
+
+interface CondicaoDeVitoria {
+    +verificarVencedor(): Time
+}
+
+class Tabuleiro {
+    -observadores: List<Observer>
+    +adicionarObservador(o: Observer)
+    +removerObservador(o: Observer)
+    +notificarObservadores(evento: String)
+    +moverPeca(origem: Posicao, destino: Posicao)
+    +removerPeca(posicao: Posicao)
+    +colocarPeca(peca: Peca, posicao: Posicao)
+}
+
+class VitoriaDerrotaObserver {
+    -tabuleiro: Tabuleiro
+    +verificarVencedor(): Time
+    +update(evento: String)
+    +notificarVencedor(vencedor: Time)
+}
+
+abstract class Peca {
+    +update(evento: String)
+    +getNome(): String
+    +getTime(): Time
+}
+
+Observer <|.. VitoriaDerrotaObserver
+Observer <|.. Peca
+CondicaoDeVitoria <|.. VitoriaDerrotaObserver
+
+Tabuleiro "1" o-- "*" Observer : observa
+
+VitoriaDerrotaObserver --> Tabuleiro : usa
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+skinparam linetype ortho
+
+class Tabuleiro {
+    - Peca[][] pecas
+    + colocarPeca(Peca peca, int x, int y)
+    + obterPeca(int x, int y): Peca
+}
+
+class Peca {
+    - String nome
+    - Time time
+}
+
+class VitoriaDerrotaObserver {
+    + verificarEstado()
+}
+
+Peca --> Tabuleiro : interage diretamente
+VitoriaDerrotaObserver --> Tabuleiro : interage diretamente
+@enduml

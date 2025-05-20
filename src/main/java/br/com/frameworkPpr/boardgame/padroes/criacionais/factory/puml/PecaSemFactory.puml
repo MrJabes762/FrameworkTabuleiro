@@ -1,0 +1,26 @@
+@startuml
+skinparam linetype ortho
+
+class Tabuleiro {
+    - Peca[][] pecas
+    + inicializarPecas()
+}
+
+class Peca {
+    - String nome
+    - Time time
+    - MovimentoStrategy movimentoStrategy
+    - Map<String, Object> caracteristicas
+    + Peca(String nome, Time time, MovimentoStrategy movimentoStrategy, Map<String, Object> caracteristicas)
+}
+
+class MovimentoRei
+class MovimentoRainha
+
+class Time
+
+Tabuleiro --> Peca : cria diretamente
+Peca --> MovimentoStrategy
+MovimentoRei -|> MovimentoStrategy
+MovimentoRainha -|> MovimentoStrategy
+@enduml

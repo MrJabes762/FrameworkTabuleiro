@@ -1,0 +1,20 @@
+@startuml
+skinparam line ortho
+!include ./src/main/java/br/com/frameworkPpr/boardgame/padroes/estruturais/facade/puml/estruturaTabuleiro.puml
+
+class Client{
+
+}
+
+Client --> Tabuleiro: Interação Direta 
+
+note top of Client 
+    O cliente (Client) interage diretamente com o tabuleiro.
+end note
+
+note right of Tabuleiro 
+    Que por sua vez, condensaria todas as funcionalidades 
+    e a complexibilidade em si mesmo.
+end note
+
+@enduml

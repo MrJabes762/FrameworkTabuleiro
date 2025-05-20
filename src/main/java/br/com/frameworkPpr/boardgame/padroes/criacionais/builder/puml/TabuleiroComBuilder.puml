@@ -1,0 +1,29 @@
+@startuml TabuleiroBuilder
+
+interface TabuleiroBuilder {
+    +iniciarTabuleiro(largura, altura)
+    +adicionarCasas()
+    +adicionarPecas()
+    +getResultado(): Tabuleiro
+}
+
+class TabuleiroDirector {
+    -builder: TabuleiroBuilder
+    +TabuleiroDirector(builder: TabuleiroBuilder)
+    +construir(largura, altura): Tabuleiro
+}
+
+class Tabuleiro
+
+TabuleiroBuilder <|.. ConcreteTabuleiroBuilder 
+TabuleiroDirector --> TabuleiroBuilder
+TabuleiroBuilder ..> Tabuleiro : <<cria>>
+
+note right of ConcreteTabuleiroBuilder
+será a implementação 
+concreta utilizando o 
+framework. Ex: selva: 
+TabuleiroBuilderSelva.
+end note
+
+@enduml

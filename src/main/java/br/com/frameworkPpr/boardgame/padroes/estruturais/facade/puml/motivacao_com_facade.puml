@@ -1,0 +1,37 @@
+@startuml
+
+skinparam line ortho
+!include ./src/main/java/br/com/frameworkPpr/boardgame/padroes/estruturais/facade/puml/estruturaTabuleiro.puml
+!include ./src/main/java/br/com/frameworkPpr/boardgame/padroes/estruturais/proxy/puml/estruturaTabuleiroProxySecurity.puml
+!include ./src/main/java/br/com/frameworkPpr/boardgame/padroes/criacionais/multiton/puml/estruturaTime.puml
+!include ./src/main/java/br/com/frameworkPpr/boardgame/padroes/comportamentais/observer/puml/estruturaVitoriaDerrotaObserver.puml
+!include ./src/main/java/br/com/frameworkPpr/boardgame/padroes/comportamentais/memento/puml/TabuleiroMemento.puml
+
+Tabuleiro --* TabuleiroProxySecurity : usa
+Tabuleiro --o Time: usa/registra
+Tabuleiro --o VitoriaDerrotaObserver: usa
+Tabuleiro --o TabuleiroMemento: cria/restaura
+
+
+note top of Tabuleiro 
+    O Tabuleiro (Compiler) é a fachada de entrada para os subsistemas
+end note
+
+note bottom of TabuleiroProxySecurity
+    O TabuleiroProxySecurity (Classe do SubSistema) é o ponto de controle de acesso
+    e segurança para o Tabuleiro (Compiler)
+end note
+
+note bottom of Time
+    O Time (Classe do SubSistema) é outro subsistema o qual o tabuleiro (Compiler) faz uso 
+    e registra os times
+end note
+note bottom of VitoriaDerrotaObserver
+    O VitoriaDerrotaObserver (Classe do SubSistema) é outro subsistema o qual o tabuleiro (Compiler) faz uso
+    na notificação de eventos de vitória e derrota
+end note
+note bottom of TabuleiroMemento
+    O VitoriaDerrotaObserver (Classe do SubSistema) é outro subsistema o qual o tabuleiro (Compiler) faz uso
+    na notificação de eventos de vitória e derrota
+end note
+@enduml

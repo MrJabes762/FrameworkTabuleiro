@@ -1,0 +1,22 @@
+@startuml
+
+skinparam linetype ortho
+
+!include src/main/java/br/com/frameworkPpr/xadrez/board/tabuleiro/singletonEProxySecurity/puml/proxy/estruturaTabuleiroInterface.puml
+!include src/main/java/br/com/frameworkPpr/xadrez/board/tabuleiro/singletonEProxySecurity/puml/singleton/estruturaTabuleiro.puml
+!include src/main/java/br/com/frameworkPpr/xadrez/board/tabuleiro/singletonEProxySecurity/puml/proxy/estruturaTabuleiroProxySecurity.puml
+
+TabuleiroProxySecurity ..|> TabuleiroInterface : Implementa
+Tabuleiro --> TabuleiroProxySecurity : Delega validações
+TabuleiroProxySecurity --> Tabuleiro : Retorna ao Tabuleiro para realizar as ações
+
+note right of TabuleiroProxySecurity
+O padrão Proxy de Proteção é utilizado para:
+- Proteger o acesso direto ás ações Tabuleiro contra ações logicamente inválidas.
+- Proteger o acesso ao Tabuleiro, garantindo que apenas o Proxy possa manipulá-lo.
+- Delegar a responsabilidade de validações como:
+    - Garantir que o jogo esteja em um estado válido antes de executar ações.
+    - Centralizar validações do jogo como, início do jogo posições válidas.
+end note
+
+@enduml

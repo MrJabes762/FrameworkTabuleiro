@@ -1,0 +1,37 @@
+@startuml
+
+skinparam line ortho
+
+class Tabuleiro {
+    - Map<Posicao, Casa> casas
+    - Map<Time, Integer> pecasPorTime
+    - VitoriaDerrotaObserver vitoriaDerrotaObserver
+    - static TabuleiroProxySecurity proxySecurityInstance
+    - List<Observer> observadores
+
+    + Tabuleiro()
+    + void inicializarCasas(int linhas, int colunas)
+    + void registrarTime(String nomeTime)
+    + void colocarPeca(Peca peca, Posicao posicao)
+    + void moverPeca(Posicao origem, Posicao destino)
+    + void removerPeca(Posicao posicao) throws VitoriaException
+    + void iniciarJogo()
+    + void finalizarJogo()
+    + void desistir(Time timeDesistente) throws VitoriaException
+    + Map<Time, Integer> getPecasPorTime()
+    + TabuleiroMemento criarMemento()
+    + void restaurarMemento(TabuleiroMemento memento)
+    + void adicionarObservador(Observer observador)
+    + void removerObservador(Observer observador)
+    + void notificarObservadores(String evento)
+
+    - Map<Posicao, Casa> getCasas()
+    - void setCasas(Map<Posicao, Casa> casas)
+    - void setPecasPorTime(Map<Time, Integer> pecasPorTime)
+    - VitoriaDerrotaObserver getVitoriaDerrotaObserver()
+    - void setVitoriaDerrotaObserver(VitoriaDerrotaObserver vitoriaDerrotaObserver)
+    - static TabuleiroProxySecurity getProxySecurityInstance()
+    - static void setProxySecurityInstance(TabuleiroProxySecurity proxyInstance)
+}
+
+@enduml

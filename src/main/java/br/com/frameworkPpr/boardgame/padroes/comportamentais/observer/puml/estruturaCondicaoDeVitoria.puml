@@ -1,0 +1,8 @@
+@startuml
+skinparam linetype ortho
+
+interface CondicaoDeVitoria {
+    + Time verificarVencedor()
+}
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+skinparam linetype ortho
+
+interface MovimentoStrategy {
+    + calcularMovimentosPossiveis(Posicao posicaoAtual, Tabuleiro tabuleiro): List<Posicao>
+}
+
+class MovimentoRei {
+    + calcularMovimentosPossiveis(Posicao posicaoAtual, Tabuleiro tabuleiro): List<Posicao>
+}
+
+class MovimentoRainha {
+    + calcularMovimentosPossiveis(Posicao posicaoAtual, Tabuleiro tabuleiro): List<Posicao>
+}
+
+class Peca {
+    - String nome
+    - MovimentoStrategy movimentoStrategy
+    + Peca(String nome, MovimentoStrategy movimentoStrategy)
+    + obterMovimentosPossiveis(Posicao posicaoAtual, Tabuleiro tabuleiro): List<Posicao>
+}
+
+MovimentoStrategy <|.. MovimentoRei
+MovimentoStrategy <|.. MovimentoRainha
+Peca --> MovimentoStrategy : usa
+
+@enduml

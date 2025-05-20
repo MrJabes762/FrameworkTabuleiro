@@ -1,0 +1,23 @@
+@startuml
+
+skinparam linetype ortho
+
+!include src/main/java/br/com/frameworkPpr/xadrez/board/tabuleiro/singletonEProxySecurity/puml/singleton/estruturaTabuleiro.puml
+
+JogadorOuClasseDeUso --> Tabuleiro : Interação direta
+
+note right of Tabuleiro
+Sem o uso do padrão Proxy:
+- Não há proteção de acesso às ações do jogo.
+- Todas as validações, como verificar se o jogo foi iniciado, 
+  ficam na camada do Tabuleiro, causando:
+    - Acoplamento excessivo entre lógica de validação e lógica de negócio.
+    - Dificuldade de manutenção e testes.
+    - Risco de inconsistências ao permitir ações inválidas.
+    - Falta de flexibilidade:
+        - Violação do princípio da Responsabilidade única.
+        - Qualquer nova funcionalidade ou validação exigiria alterações diretas no Tabuleiro.
+        - Isso aumenta o risco de introduzir erros e dificulta a extensão do sistema.
+end note
+
+@enduml

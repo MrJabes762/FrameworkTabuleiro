@@ -1,0 +1,10 @@
+@startuml
+skinparam linetype ortho
+
+class TabuleiroDirector {
+    - TabuleiroBuilder builder
+    + TabuleiroDirector(TabuleiroBuilder)
+    + construir(int, int): Tabuleiro
+}
+
+@enduml

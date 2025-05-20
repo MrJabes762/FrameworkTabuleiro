@@ -1,0 +1,7 @@
+@startuml
+skinparam linetype ortho
+class Peca {
+    - tipo
+    + calcularMovimentosPossiveis(): List<String>
+}
+@enduml

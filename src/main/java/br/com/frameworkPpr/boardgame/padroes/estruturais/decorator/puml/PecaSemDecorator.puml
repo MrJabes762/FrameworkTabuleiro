@@ -1,0 +1,22 @@
+@startuml PecaSemDecorator
+skinparam linetype ortho
+
+abstract class Peca {
+    + getNome()
+    + setNome(String)
+    + getCaracteristicas()
+    + setCaracteristicas(Map)
+    + adicionarCaracteristica(String, Object)
+    + obterCaracteristica(String)
+    + obterMovimentosPossiveis(Posicao, Tabuleiro): List<Posicao>
+    + getTime()
+    + update(String)
+}
+
+class Peao extends Peca
+class PeaoPromovidoRainha extends Peao
+
+Peca <|-- Peao
+Peao <|-- PeaoPromovidoRainha
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml TabuleiroSemBuilder
+
+class Tabuleiro {
+    - largura: int
+    - altura: int
+    - casas: String[][]
+    - pecas: String[][]
+    + Tabuleiro(largura: int, altura: int, xadrez: boolean)
+    - criarCasas()
+    - posicionarPecasXadrez()
+}
+
+@enduml

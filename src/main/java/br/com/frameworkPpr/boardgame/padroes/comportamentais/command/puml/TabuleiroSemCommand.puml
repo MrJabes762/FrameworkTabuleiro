@@ -1,0 +1,15 @@
+@startuml
+class Cliente {
+    +realizarMovimento(origem: Posicao, destino: Posicao)
+}
+
+class Tabuleiro {
+    +moverPeca(origem: Posicao, destino: Posicao)
+}
+
+class Posicao
+
+Cliente --> Tabuleiro : chama moverPeca(origem, destino)
+Cliente --> Posicao : usa origem/destino
+
+@enduml

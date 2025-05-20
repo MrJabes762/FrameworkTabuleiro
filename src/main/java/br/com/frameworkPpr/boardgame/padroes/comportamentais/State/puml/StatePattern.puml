@@ -1,0 +1,35 @@
+@startuml
+skinparam linetype ortho
+
+class ContextoJogo {
+    - EstadoJogo estadoAtual
+    + ContextoJogo()
+    + setEstadoAtual(EstadoJogo)
+    + iniciarJogo()
+    + pausarJogo()
+    + reiniciarJogo()
+    + finalizarJogo()
+    + getEstadoAtual()
+}
+
+interface EstadoJogo {
+    + iniciarJogo()
+    + pausarJogo()
+    + finalizarJogo()
+    + reiniciarJogo()
+}
+
+class EstadoIniciado
+class EstadoPausado
+class EstadoFinalizado
+
+ContextoJogo --> "1" EstadoJogo : estadoAtual
+EstadoIniciado ..|> EstadoJogo
+EstadoPausado ..|> EstadoJogo
+EstadoFinalizado ..|> EstadoJogo
+
+EstadoIniciado --> ContextoJogo : contexto
+EstadoPausado --> ContextoJogo : contexto
+EstadoFinalizado --> ContextoJogo : contexto
+
+@enduml

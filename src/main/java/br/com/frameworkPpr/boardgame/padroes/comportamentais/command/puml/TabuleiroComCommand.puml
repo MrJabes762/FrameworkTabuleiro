@@ -1,0 +1,26 @@
+@startuml
+interface Command {
+    +execute()
+    +undo()
+}
+
+class MovePieceCommand {
+    -tabuleiro: Tabuleiro
+    -origem: Posicao
+    -destino: Posicao
+    +execute()
+    +undo()
+}
+
+class Tabuleiro {
+    +moverPeca(origem: Posicao, destino: Posicao)
+}
+
+class Posicao
+
+Command <|.. MovePieceCommand
+MovePieceCommand --> Tabuleiro : usa
+MovePieceCommand --> Posicao : origem
+MovePieceCommand --> Posicao : destino
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml TabuleiroSemFlyweight
+
+class Casa {
+    -String cor
+    -int numero
+    +Casa(cor, numero)
+    +getCor()
+    +getNumero()
+}
+
+class Peca {
+    -String tipo
+    -Time time
+    +Peca(tipo, time)
+    +getTipo()
+    +getTime()
+}
+
+class Posicao {
+    -int linha
+    -int coluna
+    +Posicao(linha, coluna)
+    +getLinha()
+    +getColuna()
+}
+
+' Cliente cria diretamente cada objeto, sem compartilhamento
+Cliente --> Casa : cria
+Cliente --> Peca : cria
+Cliente --> Posicao : cria
+
+@enduml

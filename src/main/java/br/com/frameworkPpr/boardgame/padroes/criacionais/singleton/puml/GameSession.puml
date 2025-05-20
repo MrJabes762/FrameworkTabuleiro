@@ -1,0 +1,24 @@
+@startuml
+class GameSession {
+    - jogador1: Jogador
+    - jogador2: Jogador
+    - tabuleiro: Tabuleiro
+    - instance: GameSession <<static>>
+    --
+    + getInstance(jogador1: Jogador, jogador2: Jogador, tabuleiro: Tabuleiro): GameSession <<static>>
+    + getInstance(): GameSession <<static>>
+    + getJogador1(): Jogador
+    + getJogador2(): Jogador
+    + getTabuleiro(): Tabuleiro
+    + configurarTimes(nomesTimes: String...)
+    + reset(): void <<static>>
+}
+
+class Jogador
+class Tabuleiro
+
+GameSession "1" o-- "1" Jogador : jogador1
+GameSession "1" o-- "1" Jogador : jogador2
+GameSession "1" o-- "1" Tabuleiro : tabuleiro
+
+@enduml

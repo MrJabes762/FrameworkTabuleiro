@@ -1,0 +1,14 @@
+@startuml
+class Tabuleiro {
+    +getCasas(): Map
+}
+
+class HistoricoCasas {
+    -historico: List<Map>
+    +salvarEstado(casas: Map)
+    +desfazer(): Map
+}
+
+HistoricoCasas --> Tabuleiro : acessa diretamente
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam linetype ortho
+
+abstract class Peca {
+    + getNome()
+    + setNome(String)
+    + getCaracteristicas()
+    + setCaracteristicas(Map)
+    + adicionarCaracteristica(String, Object)
+    + obterCaracteristica(String)
+    + obterMovimentosPossiveis(Posicao, Tabuleiro): List<Posicao>
+    + getTime()
+    + update(String)
+}
+
+abstract class PecaDecorator {
+    - Peca pecaDecorada
+    + getNome()
+    + setNome(String)
+    + getCaracteristicas()
+    + setCaracteristicas(Map)
+    + adicionarCaracteristica(String, Object)
+    + obterCaracteristica(String)
+    + obterMovimentosPossiveis(Posicao, Tabuleiro): List<Posicao>
+    + getTime()
+    + update(String)
+}
+
+PecaDecorator --|> Peca
+PecaDecorator o-- Peca : "pecaDecorada"
+
+@enduml

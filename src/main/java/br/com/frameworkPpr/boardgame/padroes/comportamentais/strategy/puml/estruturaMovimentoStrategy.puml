@@ -1,0 +1,9 @@
+@startuml
+
+skinparam linetype ortho
+
+interface MovimentoStrategy {
+    + List<Posicao> calcularMovimentosPossiveis(Posicao posicaoAtual, Tabuleiro tabuleiro)
+}
+
+@enduml

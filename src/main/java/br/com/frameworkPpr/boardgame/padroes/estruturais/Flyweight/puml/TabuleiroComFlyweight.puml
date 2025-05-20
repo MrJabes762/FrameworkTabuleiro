@@ -1,0 +1,67 @@
+@startuml TabuleiroComFlyweight
+interface CasaFlyweight {
+    +String getCor()
+    +int getNumero()
+}
+
+interface PecaFlyweight {
+    +String getTipo()
+    +Time getTime()
+}
+
+class CasaConcretaFlyweight {
+    -String cor
+    -int numero
+    +CasaConcretaFlyweight(cor, numero)
+    +getCor()
+    +getNumero()
+}
+
+class PecaConcretaFlyweight {
+    -String tipo
+    -Time time
+    +PecaConcretaFlyweight(tipo, time)
+    +getTipo()
+    +getTime()
+}
+
+class CasaFlyweightFactory {
+    -static Map<String, CasaFlyweight> casas
+    +static CasaFlyweight getCasa(cor, numero)
+    +static int getTotalCasas()
+}
+
+class PecaFlyweighFactory {
+    -static Map<String, PecaFlyweight> pecas
+    +static PecaFlyweight getPeca(tipo, time)
+    +static int getTotalPecas()
+}
+
+class PosicaoFlyweight {
+    -int linha
+    -int coluna
+    +PosicaoFlyweight(linha, coluna)
+    +getLinha()
+    +getColuna()
+    +equals(obj)
+    +hashCode()
+}
+
+class PosicaoFlyweightFactory {
+    -static Map<String, PosicaoFlyweight> posicoes
+    +static PosicaoFlyweight getPosicao(linha, coluna)
+    +static int getTotalPosicoes()
+}
+
+CasaFlyweight <|.. CasaConcretaFlyweight
+PecaFlyweight <|.. PecaConcretaFlyweight
+
+CasaFlyweightFactory ..> CasaFlyweight : cria
+CasaConcretaFlyweight ..|> CasaFlyweight
+
+PecaFlyweighFactory ..> PecaFlyweight : cria
+PecaConcretaFlyweight ..|> PecaFlyweight
+
+PosicaoFlyweightFactory ..> PosicaoFlyweight : cria
+
+@enduml

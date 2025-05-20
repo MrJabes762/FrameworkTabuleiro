@@ -1,0 +1,8 @@
+@startuml
+class Jogo {
+    - estado: String
+    + iniciarJogo()
+    + pausarJogo()
+    + finalizarJogo()
+}
+@enduml

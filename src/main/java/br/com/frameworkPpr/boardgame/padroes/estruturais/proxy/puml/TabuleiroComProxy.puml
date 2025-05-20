@@ -1,0 +1,30 @@
+@startuml
+skinparam linetype ortho
+
+class Tabuleiro {
+    - Peca[][] pecas
+    + colocarPeca(Peca peca, int x, int y)
+    + obterPeca(int x, int y): Peca
+}
+
+class TabuleiroProxySecurity {
+    - Tabuleiro tabuleiro
+    - boolean jogoIniciado
+    + iniciarJogo()
+    + colocarPeca(Peca peca, int x, int y)
+    + obterPeca(int x, int y): Peca
+}
+
+class Peca {
+    - String nome
+    - Time time
+}
+
+class VitoriaDerrotaObserver {
+    + verificarEstado()
+}
+
+TabuleiroProxySecurity --> Tabuleiro : delega operações
+Peca --> TabuleiroProxySecurity : interage
+VitoriaDerrotaObserver --> TabuleiroProxySecurity : interage
+@enduml

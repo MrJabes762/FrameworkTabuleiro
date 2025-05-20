@@ -1,0 +1,19 @@
+@startuml
+skinparam linetype ortho
+
+interface TabuleiroBuilder {
+    + iniciarTabuleiro(int, int)
+    + adicionarPecas()
+    + adicionarCasas()
+    + getResultado(): Tabuleiro
+}
+
+class TabuleiroDirector {
+    - TabuleiroBuilder builder
+    + TabuleiroDirector(TabuleiroBuilder)
+    + construir(int, int): Tabuleiro
+}
+
+TabuleiroDirector --> TabuleiroBuilder
+
+@enduml

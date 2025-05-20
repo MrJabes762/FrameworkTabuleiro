@@ -1,0 +1,19 @@
+@startuml
+skinparam line ortho
+class Time {
+    - static Map<String, Time> times
+    - String nome
+    - List<Peca> pecas
+
+    - Time(String nome)
+    + static Time getInstance(String nome)
+    + boolean adicionarPecasAoTime(Peca peca)
+    + List<Peca> getPecasDoTime()
+    + static Set<String> getChaves()
+    + boolean removerPecaDoTime(Peca peca)
+    + int getQuantidadePecasDoTime()
+    + String toString()
+    - List<Peca> getPecas()
+}
+
+@enduml
