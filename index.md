@@ -1,41 +1,39 @@
 ---
 export_on_save:
-  html: true
+    html: true
 ---
 
-# Framework para construção de tabuleiros
+# Framework de Construção de tabuleiros
+
+**Equipe 5 - Jabes Cajazeira, Luis Guilherme, Náthaly Brito**
 
 ## Padrões Comportamentais
 
-### Command
+### Command 
 
 #### Intenção
 
-Encapsular uma requisão como um objeto, assim pode-se parametrizar clientes com diferentes requisições, enfileirar ou registrar requisições e suportar operações de desfazer/refazer.
+encapsular uma requisão como um objeto, assim pode-se parametrizar clientes com diferentes requisições, enfileirar ou registrar requisições e suportar operações de desfazer/refazer.
 
 #### Motivação sem o Padrão
 
 Sem o uso do padrão, o código do cliente ficaria responsável por saber como executar cada ação, como mover a peça. Isso geraria alto acoplamento pois o cliente teria que conhecer detalhes do tabuleiro e das peças. Haveria dificuldade em desfazer e refazer pois não teria um mecanismo simples para registrar e reverter ações.
 
-##### Exemplo sem o command
-
+##### Exemplo sem o command:
 ``` java
 // Cliente faz tudo manualmente
 tabuleiro.moverPeca(origem, destino);
 // Para desfazer, teria que saber como reverter:
 tabuleiro.moverPeca(destino, origem);
 ```
-
 ##### UML sem o Command
 
 ![out/DiagramasIMG/TabuleiroSemCommand.png](../out/DiagramasIMG/TabuleiroSemCommand.png)
 
 #### Motivação com o Padrão
-
 No nosso projeto o Command é aplicadado na manipulação de ações do tabuleiro, como mover peças. Assim o código que solicita a ação não precisa saber vomo ela é executada. A interface Command define os métodos que são implementados pela classe MevePieceCommand.
 
-##### Definição da regra para comandos
-
+##### Definição da regra para comandos:
 ``` java
 package main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.command;
 
@@ -45,8 +43,7 @@ public interface Command {
 }
 ```
 
-##### Encapsulamento da ação de mover uma peça no tabuleiro
-
+##### Encapsulamento da ação de mover uma peça no tabuleiro:
 ``` java
 package main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.command;
 
@@ -77,8 +74,7 @@ public class MovePieceCommand implements Command {
 ```
 
 O *Tabuleiro* executa a lógica real de movimentação:
-
-``` java
+``` java 
    public void moverPeca(Posicao origem, Posicao destino) {
         getProxySecurityInstance().moverPeca(origem, destino, getCasas());
         Casa casaDestino = getCasas().get(destino);
@@ -90,24 +86,24 @@ O *Tabuleiro* executa a lógica real de movimentação:
     }
 ```
 
-##### UML com o Command
+##### UML com o Command 
 
 ![out/DiagramasIMG/TabuleiroComCommand.png](../out/DiagramasIMG/TabuleiroComCommand.png)
 
-#### Participantes
-
+#### Participantes:
 1. Command (interface Command):
-   - declara uma interface para a execução de uma operação.
+   - declara uma interface para a execução de uma operação.   
 2. ConcreteCommand (classe MovePieceCommand)
    - define uma vinculação entre um objeto Receiver e uma ação;
    - implementa  Execute() e undo()  através  da  invocação  da(s)  correspondente(s)
 operação(ões) no Receiver.
 3. Receiver (classe Tabuleiro):
    - cria um objeto ConcreteCommand e estabelece o seu receptor.
-4. Invoker:
-5. Client (Tauleiro Selva):
+4. Invoker: 
+5. Client (Tauleiro Selva): 
     - sabe como executar as operações associadas a uma solicitação. Qualquer
 classe pode funcionar como um Receiver.
+
 
 ### Memento
 
@@ -239,6 +235,7 @@ public class HistoricoTabuleiro {
 2. Originator: Tabuleiro -> cria um *TabueliroMemento* com seu estado atual e pode restaurar seu estado a partir de um memento.
 3. Caretaker: HistoricoTabuleiro -> gerencia os mementos criados pelo Tabuleiro para desfazer/refazer;
 
+
 ### Observer
 
 #### Intenção -
@@ -290,6 +287,7 @@ public class Tabuleiro {
 
 ![out/DiagramasIMG/VitoriaDerrotaSemObserver.png](../out/DiagramasIMG/VitoriaDerrotaSemObserver.png)>
 
+
 #### Motivação no contexto do Tabuleiro -
 
 Com o uso do Observer, o *Tabuleiro* notifica automaticamente os observadores (*vitoriaDerrotaObserver*, *Peca*) sobre eventos importantes. As peças implementam a interface Observer, assim elas são registradas como observadores do *Tabuleiro*. Quando uma ação acontece, o *Tabuleiro* chama o método **notificarObservadores(evento)** que percorre todos os observadores e chama o **update(evento)**.
@@ -317,9 +315,7 @@ Com o uso do Observer, o *Tabuleiro* notifica automaticamente os observadores (*
         }
     }
 ```
-
 ##### Peças implementam o Observer
-
 ``` java
     @Override
     public void update(String evento) {
@@ -350,8 +346,7 @@ Com o uso do Observer, o *Tabuleiro* notifica automaticamente os observadores (*
     }
 ```
 
-##### *VitoriaDerrotaObserver* implementa a interface Observer e é registrado como observador de *Tabuleiro*
-
+##### *VitoriaDerrotaObserver* implementa a interface Observer e é registrado como observador de *Tabuleiro*.
 ``` java
 package main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.observer;
 
@@ -376,6 +371,7 @@ public class VitoriaDerrotaObserver implements Observer, CondicaoDeVitoria{
 1. **Subject:** Tabuleiro -> ele é o objeto observado, mantém uma lista de observadores e notifica-os sobre mudanças no estado do jogo;
 2. **Observer:** interface Observer -> ela define o as regras para objetos que desejam ser notificados sobre as mudanças.
 3. **ConcreteObserver:** VitoriaDerrotaObserver, Peca -> implementa a interface Observer e reage as notificações do *Tabuleiro*.
+
 
 ### State
 
@@ -428,6 +424,7 @@ public class Jogo {
 ##### UML sem o padrão
 
 ![out/DiagramasIMG/semState.png](../out/DiagramasIMG/semState.png)
+
 
 #### Motivação com o State
 
@@ -551,6 +548,7 @@ public class Peca {
 
 ![out/DiagramasIMG/estruturaPecaSemStrategy.png](../out/DiagramasIMG/estruturaPecaSemStrategy.png)
 
+
 #### Motivação no contexto do Tabuleiro
 
 Aqui, o strategy é usado para definir diferentes estratégias de movimento para as peças. Cada peça pode ter sua própria lógica de movimento. A interface *MovimentoStrategy* define o método *calcularMovimentosPossiveis* que é implementado por classes específicas para cada tipo de peça.
@@ -602,15 +600,12 @@ public class MovimentoRei implements MovimentoStrategy {
 ### Builder
 
 #### Intenção
-
 Separa a construção de um objeto complexo da sua representação, assim o mesmo processo de construção pode criar diferentes representações.
 
 #### Motivação sem o Padrão
-
 Sem o uso do Builder, a construção de um tabuleiro ficaria centralizada em uma única classe, no caso *Tabuleiro*. Isso traria problemas como dificuladades de reutilizar partes da construção e violação do princípio de responsabilidade única, pois o *Tabuleiro* teria que saber tanto como construir quanto como se comportar dificultando a manutenção.
 
-##### Exemplo de implementação sem o Builder
-
+##### Exemplo de implementação sem o Builder:
 ``` java
 package br.com.frameworkPpr.boardgame.game;
 
@@ -653,11 +648,9 @@ public class Tabuleiro {
 ![out/DiagramasIMG/TabuleiroSemBuilder.png](../out/DiagramasIMG/TabuleiroSemBuilder.png)
 
 #### Motivação com o Padrão
-
 no projeto, o Builder é usado para permitir a construção flexível de diferentes tipos de tabuleiros, separando o processo de construção da representação final do objeto. Isso facilita a criação de tabuleiros personalizados para diferentes jogos.
 
-##### A interface *TabuleiroBuilder* define os métodos necessários para construir um tabuleiro
-
+##### A interface *TabuleiroBuilder* define os métodos necessários para construir um tabuleiro:
 ``` java
 package main.java.br.com.frameworkPpr.boardgame.padroes.criacionais.builder;
 
@@ -670,9 +663,7 @@ public interface TabuleiroBuilder {
     Tabuleiro getResultado();
 }
 ```
-
-##### O *TabuleiroDirector* orquestra a construção do tabuleiro. Ele chama os métodos do builder na ordem correta para criar o tabuleiro
-
+##### O *TabuleiroDirector* orquestra a construção do tabuleiro. Ele chama os métodos do builder na ordem correta para criar o tabuleiro:
 ``` java
 package main.java.br.com.frameworkPpr.boardgame.padroes.criacionais.builder;
 
@@ -694,13 +685,13 @@ public class TabuleiroDirector {
 }
 ```
 
-##### UML com Builder
+##### UML com Builder:
 
 ![out/DiagramasIMG/TabuleiroBuilder.png](../out/DiagramasIMG/TabuleiroBuilder.png)
 
-#### Participantes
+#### Participantes:
 
-1. Builder (TabuleiroBuilder)
+1. Builder (TabuleiroBuilder) 
     - especifica  uma  interface  abstrata  para  criação  de  partes  de  um  objeto-
 produto. Nesse caso, os contratos:  iniciarTabuleiro(int largura, int altura); adicionarPecas(); e void adicionarCasas();
 
@@ -709,15 +700,17 @@ produto. Nesse caso, os contratos:  iniciarTabuleiro(int largura, int altura); a
    - define e mantém a representação que cria;
    - È a implementação concreta do framework
 
+
 3. Director (TabuleiroDirector)
    - constrói um objeto usando a interface de Builder.
   
-4. Product ().
+3.  Product ().
     - representa o objeto complexo em construção. ConcreteBuilder constrói a
 representação  interna  do  produto  e  define  o  processo  pelo  qual  ele  é
 montado;
     - inclui classes que definem as partes constituintes, inclusive as interfaces
 para a montagem das partes no resultado final.
+
 
 ### Factory
 
@@ -822,6 +815,7 @@ public class Tabuleiro {
 
 ![out/DiagramasIMG/PecaComFactory.png](../out/DiagramasIMG/PecaComFactory.png)
 
+
 #### Participantes -
 
 1. **Produto:** Peca -> define a interface base para os objetos que serão criados;
@@ -834,6 +828,7 @@ public class Tabuleiro {
 #### Intenção -
 
 [^K19]
+
 Permitir a criação de uma quantidade limitada de instâncias de determinada classe e fornecer um modo para recuperá-las.
 
 #### Motivação sem o Padrão -
@@ -891,33 +886,41 @@ gerenciador.adicionarTime("Azul", new Time("Azul")); // Possível adicionar novo
 
 #### Motivação no contexto do Tabuleiro -
 
-No projeto, o padrão Multiton é aplicado por meio da classe `TimeMultiton`, que mantém um mapa estático de instâncias únicas para cada nome de time. Além de garantir unicidade, o `TimeMultiton` gerencia as peças de cada time por meio de métodos como:
-
-- `adicionarPecasAoTime(Peca peca)`: adiciona uma peça ao time correspondente.
-- `removerPecaDoTime(Peca peca)`: remove uma peça do time.
-- `getQuantidadePecasDoTime()`: retorna a quantidade de peças do time.
-
-Esses métodos centralizam a lógica de gerenciamento de peças, reduzindo a responsabilidade do `Tabuleiro` e promovendo coesão.
+No projeto, o padrão Multiton é aplicado por meio da classe `Time`, que mantém um mapa estático de instâncias únicas para cada nome de time. Assim, sempre que for necessário criar um time, é necessário chamar o método `getInstance` passando como parâmetro o nome do time. Caso esse time exista, o método vai retornar o mesmo. Caso não exista, o método cria o novo time. Isso garante unicidade e centralização do controle dos times, permitindo que cada time seja identificado de forma única e reutilizável em todo o sistema.
 
 Exemplo simplificado da implementação real:
 
 ```java
-public class TimeMultiton {
-    private static final Map<String, TimeMultiton> times = new HashMap<>();
-    private List<Peca> pecas = new ArrayList<>();
+package main.java.br.com.frameworkPpr.boardgame.padroes.criacionais.multiton;
 
-    public boolean adicionarPecasAoTime(Peca peca) {
-        return pecas.add(peca);
+import java.util.HashMap;
+import java.util.Map;
+
+public class Time {
+    private static final Map<String, Time> times = new HashMap<>();
+    private final String nome;
+
+    private Time(String nome) {
+        this.nome = nome;
     }
 
-    public boolean removerPecaDoTime(Peca peca) {
-        return pecas.remove(peca);
+    public static Time getInstance(String nome) {
+        return times.computeIfAbsent(nome, Time::new);
     }
 
-    public int getQuantidadePecasDoTime() {
-        return pecas.size();
+    @Override
+    public String toString() {
+        return nome;
     }
 }
+```
+
+Uso típico:
+
+```java
+Time branco = Time.getInstance("Branco");
+Time preto = Time.getInstance("Preto");
+Time azul = Time.getInstance("Azul"); // Garantido que "Azul" será único
 ```
 
 ##### UML com multiton -
@@ -928,8 +931,8 @@ Com o Multiton, declaramos instâncias únicas para representar os times, que po
 
 #### Participantes -
 
-1. **Multiton:** Classe `TimeMultiton` -> mantém instâncias únicas para cada nome de time e gerencia as peças de cada time.
-2. **Client:** (Tabuleiro), Peca -> classes que utilizam as instâncias do multiton para acessar ou modificar o estado dos times.
+1. **Multiton:** Classe `Time` -> mantém instâncias únicas para cada nome de time;
+2. **Client:** (Tabuleiro), Peca -> classes que utilizam as instâncias do multiton.
 
 ### Singleton
 
@@ -991,6 +994,7 @@ public class GameSession {
 ##### UML sem singleton
 
 ![out/DiagramasIMG/motivacao_com_multiton.png](../out/DiagramasIMG/motivacao_com_multiton.png)>
+
 
 #### Motivação no contexto do GameSession -
 
@@ -1177,6 +1181,7 @@ Peca peaoPromovido = new PecaPromovidaDecorator(peao); // Adiciona comportamento
 ##### UML com Decorator
 
 ![out/DiagramasIMG/PecaDecorator.png](../out/DiagramasIMG/PecaDecorator.png)
+
 
 Com o Decorator, é possível estender funcionalidades das peças de forma flexível e dinâmica, sem criar uma explosão de subclasses.
 
@@ -1369,6 +1374,7 @@ No projeto, o `Tabuleiro` utiliza o Proxy para todas as operações sensíveis, 
     - **`TabuleiroMemento`:** Permite salvar e restaurar o estado do tabuleiro.
   - Não têm conhecimento do Façade; isto é, não mantêm referências para ele.
 
+
 ### Flyweight
 
 #### Intenção
@@ -1391,6 +1397,7 @@ No contexto do tabuleiro, existem muitas casas, peças e posições que podem se
 
 ![out/DiagramasIMG/TabuleiroComFlyweight.png](../out/DiagramasIMG/TabuleiroComFlyweight.png)
 
+
 #### Participantes
 
 - **Flyweight (CasaFlyweight, PecaFlyweight):** Interface para os objetos compartilhados.
@@ -1401,5 +1408,8 @@ No contexto do tabuleiro, existem muitas casas, peças e posições que podem se
 ---
 
 ## Referências
+
+
+[^GAMMA]: GAMMA, Erich. et al. Padrões de projetos: Soluções reutilizáveis de software orientados a objetos Bookman editora, 2009.
 
 [^K19]: KASPCHUK, Alexandre; PLEIN, Tiago. K19 - Design Patterns em Java. São Paulo: K19 Treinamentos, 2012.
