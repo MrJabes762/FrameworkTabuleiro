@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Singleton</title>
+  <style>
+    /* From extension vscode.github */
+    /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+    .vscode-dark img[src$=\#gh-light-mode-only],
+    .vscode-light img[src$=\#gh-dark-mode-only],
+    .vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+    .vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+      display: none;
+    }
+  </style>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+  <style>
+    .task-list-item {
+      list-style-type: none;
+    }
+
+    .task-list-item-checkbox {
+      margin-left: -20px;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+  </style>
+  <style>
+    :root {
+      --color-note: #0969da;
+      --color-tip: #1a7f37;
+      --color-warning: #9a6700;
+      --color-severe: #bc4c00;
+      --color-caution: #d1242f;
+      --color-important: #8250df;
+    }
+  </style>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-note: #2f81f7;
+        --color-tip: #3fb950;
+        --color-warning: #d29922;
+        --color-severe: #db6d28;
+        --color-caution: #f85149;
+        --color-important: #a371f7;
+      }
+    }
+  </style>
+  <style>
+    .markdown-alert {
+      padding: 0.5rem 1rem;
+      margin-bottom: 16px;
+      color: inherit;
+      border-left: .25em solid #888;
+    }
+
+    .markdown-alert>:first-child {
+      margin-top: 0
+    }
+
+    .markdown-alert>:last-child {
+      margin-bottom: 0
+    }
+
+    .markdown-alert .markdown-alert-title {
+      display: flex;
+      font-weight: 500;
+      align-items: center;
+      line-height: 1
+    }
+
+    .markdown-alert .markdown-alert-title .octicon {
+      margin-right: 0.5rem;
+      display: inline-block;
+      overflow: visible !important;
+      vertical-align: text-bottom;
+      fill: currentColor;
+    }
+
+    .markdown-alert.markdown-alert-note {
+      border-left-color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-note .markdown-alert-title {
+      color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-important {
+      border-left-color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-important .markdown-alert-title {
+      color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-warning {
+      border-left-color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-warning .markdown-alert-title {
+      color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-tip {
+      border-left-color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-tip .markdown-alert-title {
+      color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-caution {
+      border-left-color: var(--color-caution);
+    }
+
+    .markdown-alert.markdown-alert-caution .markdown-alert-title {
+      color: var(--color-caution);
+    }
+  </style>
+
+</head>
+
+<body class="vscode-body vscode-light">
+  <hr>
+  <h1 id="singleton">Singleton</h1>
+  <h3 id="intenção--">Intenção -</h3>
+  <p>Garantir que uma classe possua apenas uma instância e provê um ponto de acesso global a ela.</p>
+  <h3 id="motivação-sem-o-padrão--">Motivação sem o Padrão -</h3>
+  <p>Sem a aplicação do padrão, seria possível a criação de várias instâncias da sessão do jogo causando duplicidade e
+    falta de controle já que haveria múltiplos jogos criados sem a centralização desses.</p>
+  <pre><code class="language-java"><span class="hljs-keyword">package</span> main.java.br.com.frameworkPpr.boardgame.padroes.criacionais.singleton;
+
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Jogador;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Tabuleiro;
+
+<span class="hljs-comment">/**
+ * Classe GameSession SEM o padrão Singleton.
+ * Permite múltiplas instâncias da sessão do jogo.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GameSession</span> {
+    <span class="hljs-keyword">private</span> Jogador jogador1;
+    <span class="hljs-keyword">private</span> Jogador jogador2;
+    <span class="hljs-keyword">private</span> Tabuleiro tabuleiro;
+
+    <span class="hljs-comment">/**
+     * Construtor público, permitindo várias instâncias.
+     * <span class="hljs-doctag">@param</span> jogador1 Jogador 1
+     * <span class="hljs-doctag">@param</span> jogador2 Jogador 2
+     * <span class="hljs-doctag">@param</span> tabuleiro Tabuleiro do jogo
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">GameSession</span><span class="hljs-params">(Jogador jogador1, Jogador jogador2, Tabuleiro tabuleiro)</span> {
+        <span class="hljs-built_in">this</span>.jogador1 = jogador1;
+        <span class="hljs-built_in">this</span>.jogador2 = jogador2;
+        <span class="hljs-built_in">this</span>.tabuleiro = tabuleiro;
+    }
+
+    <span class="hljs-keyword">public</span> Jogador <span class="hljs-title function_">getJogador1</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> jogador1;
+    }
+
+    <span class="hljs-keyword">public</span> Jogador <span class="hljs-title function_">getJogador2</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> jogador2;
+    }
+
+    <span class="hljs-keyword">public</span> Tabuleiro <span class="hljs-title function_">getTabuleiro</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> tabuleiro;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configurarTimes</span><span class="hljs-params">(String... nomesTimes)</span> {
+        <span class="hljs-keyword">for</span> (String nomeTime : nomesTimes) {
+            tabuleiro.registrarTime(nomeTime);
+        }
+    }
+}
+</code></pre>
+  <h3 id="uml-sem-singleton">UML sem singleton</h3>
+  <p><img
+      src="../../out/DiagramasIMG/motivacao_com_multiton.png"
+      alt="out/DiagramasIMG/motivacao_com_multiton.png">&gt;</p>
+  <h3 id="motivação-no-contexto-do-gamesession--">Motivação no contexto do GameSession -</h3>
+  <p>Unicidade da sessão do jogo já que ele é um recurso central e único, varias instâncias dele causaria inconsistência
+    no estado do jogo. Com o acesso global, outras partes do sistema, peças, jogadores, regras... podem interagir de
+    forma consistente.</p>
+  <pre><code class="language-java"><span class="hljs-keyword">package</span> main.java.br.com.frameworkPpr.boardgame.padroes.criacionais.singleton;
+
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Jogador;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Tabuleiro;
+
+<span class="hljs-comment">/**
+ * Classe Singleton responsável por gerenciar a sessão do jogo.
+ * Garante que apenas uma instância de GameSession exista durante a execução.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GameSession</span> {
+    <span class="hljs-comment">// Jogador 1 da sessão</span>
+    <span class="hljs-keyword">private</span> Jogador jogador1;
+    <span class="hljs-comment">// Jogador 2 da sessão</span>
+    <span class="hljs-keyword">private</span> Jogador jogador2;
+    <span class="hljs-comment">// Tabuleiro associado à sessão</span>
+    <span class="hljs-keyword">private</span> Tabuleiro tabuleiro;
+    <span class="hljs-comment">// Instância única da sessão (Singleton)</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> GameSession instance;
+
+    <span class="hljs-comment">/**
+     * Construtor privado para impedir instanciação externa.
+     * <span class="hljs-doctag">@param</span> jogador1 Jogador 1
+     * <span class="hljs-doctag">@param</span> jogador2 Jogador 2
+     * <span class="hljs-doctag">@param</span> tabuleiro Tabuleiro do jogo
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">GameSession</span><span class="hljs-params">(Jogador jogador1, Jogador jogador2, Tabuleiro tabuleiro)</span> {
+        <span class="hljs-built_in">this</span>.jogador1 = jogador1;
+        <span class="hljs-built_in">this</span>.jogador2 = jogador2;
+        <span class="hljs-built_in">this</span>.tabuleiro = tabuleiro;
+    }
+
+    <span class="hljs-comment">/**
+     * Obtém a instância única de GameSession, criando-a se necessário.
+     * <span class="hljs-doctag">@param</span> jogador1 Jogador 1
+     * <span class="hljs-doctag">@param</span> jogador2 Jogador 2
+     * <span class="hljs-doctag">@param</span> tabuleiro Tabuleiro do jogo
+     * <span class="hljs-doctag">@return</span> Instância única de GameSession
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> GameSession <span class="hljs-title function_">getInstance</span><span class="hljs-params">(Jogador jogador1, Jogador jogador2, Tabuleiro tabuleiro)</span> {
+        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) {
+            instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">GameSession</span>(jogador1, jogador2, tabuleiro);
+        }
+        <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-comment">/**
+     * Obtém a instância única de GameSession já criada.
+     * <span class="hljs-doctag">@return</span> Instância única de GameSession
+     * <span class="hljs-doctag">@throws</span> IllegalStateException se a sessão ainda não foi inicializada
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> GameSession <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalStateException</span>(<span class="hljs-string">&quot;GameSession ainda não foi inicializada.&quot;</span>);
+        }
+        <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-comment">/**
+     * Retorna o Jogador 1 da sessão.
+     * <span class="hljs-doctag">@return</span> Jogador 1
+     */</span>
+    <span class="hljs-keyword">public</span> Jogador <span class="hljs-title function_">getJogador1</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> jogador1;
+    }
+
+    <span class="hljs-comment">/**
+     * Retorna o Jogador 2 da sessão.
+     * <span class="hljs-doctag">@return</span> Jogador 2
+     */</span>
+    <span class="hljs-keyword">public</span> Jogador <span class="hljs-title function_">getJogador2</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> jogador2;
+    }
+
+    <span class="hljs-comment">/**
+     * Retorna o tabuleiro da sessão.
+     * <span class="hljs-doctag">@return</span> Tabuleiro
+     */</span>
+    <span class="hljs-keyword">public</span> Tabuleiro <span class="hljs-title function_">getTabuleiro</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> tabuleiro;
+    }
+
+    <span class="hljs-comment">/**
+     * Configura os times no tabuleiro a partir dos nomes fornecidos.
+     * <span class="hljs-doctag">@param</span> nomesTimes Lista de nomes dos times
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configurarTimes</span><span class="hljs-params">(String... nomesTimes)</span> {
+        <span class="hljs-keyword">for</span> (String nomeTime : nomesTimes) {
+            tabuleiro.registrarTime(nomeTime);
+        }
+    }
+
+    <span class="hljs-comment">/**
+     * Reseta a instância da sessão, permitindo nova inicialização.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reset</span><span class="hljs-params">()</span> {
+        instance = <span class="hljs-literal">null</span>;
+    }
+}
+</code></pre>
+  <h3 id="uml-com-singleton">UML com singleton</h3>
+  <p><img
+      src="../../out/DiagramasIMG/motivacao_com_singleton.png"
+      alt="out/DiagramasIMG/motivacao_com_singleton.png"></p>
+  <h3 id="participantes--">Participantes -</h3>
+  <ol>
+    <li><strong>Singleton:</strong>
+      Representado pela classe <strong>GameSession</strong> através de uma construtor privado, um método estático
+      getInstance() que retorna a instância única dessa classe.</li>
+    <li><strong>Client:</strong>
+      Classes que utilizam a instância única da sessão do jogo para acessar ou modificar seu estado. Exemplos de clients
+      incluem as classes que representam os <strong>jogadores</strong>, <strong>regras do jogo</strong> e qualquer outro
+      componente que precise interagir com a sessão centralizada do jogo. Esses clients acessam a instância de
+      <code>GameSession</code> por meio do método estático <code>getInstance()</code>.</li>
+  </ol>
+  <p><a href="../../index.html">Voltar Principal</a></p>
+
+
+
+</body>
+
+</html>
