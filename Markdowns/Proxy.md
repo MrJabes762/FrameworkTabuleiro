@@ -120,3 +120,5 @@ No projeto, o `Tabuleiro` utiliza o Proxy para todas as operações sensíveis, 
 1. **Proxy:** TabuleiroProxySecurity -> atua como intermediário entre o cliente e o objeto real, validando e controlando o acesso ao Tabuleiro. Implementa a interface TabuleiroInterface e é Singleton.
 2. **Objeto real:** Tabuleiro -> contém a lógica principal do jogo, como gerenciar casas, peças e as interações. O *TabuleiroProxySecurity* delega as operações ao *Tabuleiro* após realizar as validações necessárias.
 3. **Cliente:** Peca, VitoriaDerrotaObserver -> e demais classes que interagem com o tabuleiro por meio do proxy.
+
+[Voltar Principal](../index.md)

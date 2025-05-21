@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Proxy</title>
+  <style>
+    /* From extension vscode.github */
+    /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+    .vscode-dark img[src$=\#gh-light-mode-only],
+    .vscode-light img[src$=\#gh-dark-mode-only],
+    .vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+    .vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+      display: none;
+    }
+  </style>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+  <style>
+    .task-list-item {
+      list-style-type: none;
+    }
+
+    .task-list-item-checkbox {
+      margin-left: -20px;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+  </style>
+  <style>
+    :root {
+      --color-note: #0969da;
+      --color-tip: #1a7f37;
+      --color-warning: #9a6700;
+      --color-severe: #bc4c00;
+      --color-caution: #d1242f;
+      --color-important: #8250df;
+    }
+  </style>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-note: #2f81f7;
+        --color-tip: #3fb950;
+        --color-warning: #d29922;
+        --color-severe: #db6d28;
+        --color-caution: #f85149;
+        --color-important: #a371f7;
+      }
+    }
+  </style>
+  <style>
+    .markdown-alert {
+      padding: 0.5rem 1rem;
+      margin-bottom: 16px;
+      color: inherit;
+      border-left: .25em solid #888;
+    }
+
+    .markdown-alert>:first-child {
+      margin-top: 0
+    }
+
+    .markdown-alert>:last-child {
+      margin-bottom: 0
+    }
+
+    .markdown-alert .markdown-alert-title {
+      display: flex;
+      font-weight: 500;
+      align-items: center;
+      line-height: 1
+    }
+
+    .markdown-alert .markdown-alert-title .octicon {
+      margin-right: 0.5rem;
+      display: inline-block;
+      overflow: visible !important;
+      vertical-align: text-bottom;
+      fill: currentColor;
+    }
+
+    .markdown-alert.markdown-alert-note {
+      border-left-color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-note .markdown-alert-title {
+      color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-important {
+      border-left-color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-important .markdown-alert-title {
+      color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-warning {
+      border-left-color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-warning .markdown-alert-title {
+      color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-tip {
+      border-left-color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-tip .markdown-alert-title {
+      color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-caution {
+      border-left-color: var(--color-caution);
+    }
+
+    .markdown-alert.markdown-alert-caution .markdown-alert-title {
+      color: var(--color-caution);
+    }
+  </style>
+
+</head>
+
+<body class="vscode-body vscode-light">
+  <hr>
+  <h1 id="proxy">Proxy</h1>
+  <h3 id="intenção--">Intenção -</h3>
+  <p>atuar como intermediário entre o cliente e um objeto real, controlando o acesso a ele.</p>
+  <h3 id="motivação-sem-o-padrão--">Motivação Sem o Padrão -</h3>
+  <p>Sem o Proxy as classes <em>Peca</em> e <em>VitoriaDerrotaObserver</em> teriam que interagir diretamente com o
+    objeto real <em>Tabuleiro</em>. Isso levaria a falta de controle de acesso já que não há uma camada intermediária
+    para validar as ações antes executar. Operações inválidas poderiam ser realizadas no <em>Tabuleiro</em> e as lógicas
+    de validações teriam de ser implementadas direto nessa classe.</p>
+  <pre><code class="language-java"><span class="hljs-keyword">package</span> br.com.frameworkPpr.xadrez.board;
+
+<span class="hljs-keyword">import</span> br.com.frameworkPpr.xadrez.pieces.Peca;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Tabuleiro</span> {
+    <span class="hljs-keyword">private</span> Peca[][] pecas;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Tabuleiro</span><span class="hljs-params">()</span> {
+        pecas = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Peca</span>[<span class="hljs-number">8</span>][<span class="hljs-number">8</span>];
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">colocarPeca</span><span class="hljs-params">(Peca peca, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+        <span class="hljs-comment">// Sem validações</span>
+        pecas[x][y] = peca;
+    }
+
+    <span class="hljs-keyword">public</span> Peca <span class="hljs-title function_">obterPeca</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+        <span class="hljs-keyword">return</span> pecas[x][y];
+    }
+}
+</code></pre>
+  <h3 id="uml-sem-proxy--">UML sem Proxy -</h3>
+  <p><img src="../../out/DiagramasIMG/TabuleiroSemProxy.png" alt="out/DiagramasIMG/TabuleiroSemProxy.png">&gt;</p>
+  <h3 id="motivação-no-contexto-do-tabuleiro--">Motivação no Contexto do tabuleiro -</h3>
+  <p>No framework, o padrão Proxy é aplicado através da classe <code>TabuleiroProxySecurity</code>, que implementa a
+    interface <code>TabuleiroInterface</code> e atua como camada intermediária entre o cliente e o objeto real
+    <code>Tabuleiro</code>. O Proxy é responsável por realizar validações de estado do jogo (como se o jogo foi
+    iniciado, se a posição é válida, se a casa está ocupada, etc.) antes de delegar as operações ao Tabuleiro real. Além
+    disso, o Proxy é implementado como Singleton, garantindo uma única instância de controle de acesso ao tabuleiro.
+  </p>
+  <p>Exemplo simplificado da implementação real:</p>
+  <pre><code class="language-java"><span class="hljs-keyword">package</span> main.java.br.com.frameworkPpr.boardgame.padroes.estruturais.proxy;
+
+<span class="hljs-keyword">import</span> java.util.Map;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Casa;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Peca;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.Posicao;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.game.TabuleiroInterface;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.state.ContextoJogo;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.state.EstadoIniciado;
+<span class="hljs-keyword">import</span> main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.state.EstadoJogo;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TabuleiroProxySecurity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">TabuleiroInterface</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> linhas;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> colunas;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> TabuleiroProxySecurity proxyInstance;
+    <span class="hljs-keyword">private</span> ContextoJogo contexto;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">TabuleiroProxySecurity</span><span class="hljs-params">()</span> {
+        <span class="hljs-built_in">this</span>.contexto = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ContextoJogo</span>();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> TabuleiroProxySecurity <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">synchronized</span> (TabuleiroProxySecurity.class) {
+            <span class="hljs-keyword">if</span> (proxyInstance == <span class="hljs-literal">null</span>) {
+                proxyInstance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TabuleiroProxySecurity</span>();
+            }
+        }
+        <span class="hljs-keyword">return</span> proxyInstance;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">verificarEstadoPermitido</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">if</span> (!(contexto.getEstadoAtual() <span class="hljs-keyword">instanceof</span> EstadoIniciado)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalStateException</span>(<span class="hljs-string">&quot;Ação não permitida no estado atual do jogo: &quot;</span> + contexto.getEstadoAtual().getClass().getSimpleName());
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">inicializarCasas</span><span class="hljs-params">(<span class="hljs-type">int</span> linhas, <span class="hljs-type">int</span> colunas)</span> {
+        <span class="hljs-comment">// validações...</span>
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">colocarPeca</span><span class="hljs-params">(Peca peca, Posicao posicao, Map&lt;Posicao, Casa&gt; casas)</span> {
+        verificarEstadoPermitido();
+        <span class="hljs-comment">// validações de posição e ocupação...</span>
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">moverPeca</span><span class="hljs-params">(Posicao origem, Posicao destino, Map&lt;Posicao, Casa&gt; casas)</span> {
+        verificarEstadoPermitido();
+        <span class="hljs-comment">// validações de origem/destino...</span>
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removerPeca</span><span class="hljs-params">(Posicao posicao)</span> {
+        verificarEstadoPermitido();
+        <span class="hljs-comment">// validações...</span>
+    }
+
+    <span class="hljs-comment">// Métodos para iniciar, pausar, finalizar e reiniciar o jogo delegando ao ContextoJogo</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">iniciarJogo</span><span class="hljs-params">()</span> { contexto.iniciarJogo(); }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pausarJogo</span><span class="hljs-params">()</span> { contexto.pausarJogo(); }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">finalizarJogo</span><span class="hljs-params">()</span> { contexto.finalizarJogo(); }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reiniciarJogo</span><span class="hljs-params">()</span> { contexto.reiniciarJogo(); }
+}
+</code></pre>
+  <p>No projeto, o <code>Tabuleiro</code> utiliza o Proxy para todas as operações sensíveis, garantindo que as regras de
+    negócio e validações estejam centralizadas e desacopladas da lógica principal do tabuleiro.</p>
+  <h3 id="uml-com-proxy--">UML com Proxy -</h3>
+  <p><img src="../../out/DiagramasIMG/TabuleiroComProxy.png" alt="out/DiagramasIMG/TabuleiroComProxy.png">&gt;</p>
+  <h3 id="participantes--">Participantes -</h3>
+  <ol>
+    <li><strong>Proxy:</strong> TabuleiroProxySecurity -&gt; atua como intermediário entre o cliente e o objeto real,
+      validando e controlando o acesso ao Tabuleiro. Implementa a interface TabuleiroInterface e é Singleton.</li>
+    <li><strong>Objeto real:</strong> Tabuleiro -&gt; contém a lógica principal do jogo, como gerenciar casas, peças e
+      as interações. O <em>TabuleiroProxySecurity</em> delega as operações ao <em>Tabuleiro</em> após realizar as
+      validações necessárias.</li>
+    <li><strong>Cliente:</strong> Peca, VitoriaDerrotaObserver -&gt; e demais classes que interagem com o tabuleiro por
+      meio do proxy.</li>
+  </ol>
+  <p><a href="../../index.html">Voltar Principal</a></p>
+
+
+
+</body>
+
+</html>
