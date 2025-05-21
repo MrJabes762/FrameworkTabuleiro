@@ -75,3 +75,6 @@ Com o Decorator, é possível estender funcionalidades das peças de forma flex�
 2. **Decorator:** `PecaDecorator` — implementa a interface de `Peca` e mantém uma referência para um objeto `Peca`.
 3. **ConcreteDecorator:** `PecaPromovidaDecorator` — adiciona responsabilidades ao componente.
 4. **Cliente:** Código que utiliza as peças decoradas.
+
+
+[Voltar Principal](../index.md)
