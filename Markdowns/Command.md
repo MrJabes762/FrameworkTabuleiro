@@ -1,3 +1,4 @@
+
 # Command 
 
 ### Intenção
@@ -87,6 +88,8 @@ operação(ões) no Receiver.
 3. Receiver (classe Tabuleiro):
    - cria um objeto ConcreteCommand e estabelece o seu receptor.
 4. Invoker: 
-5. Client (Tauleiro Selva): 
+5. Client (Tabuleiro Selva): 
     - sabe como executar as operações associadas a uma solicitação. Qualquer
 classe pode funcionar como um Receiver.
+
+[Voltar Principal](../index.md)
