@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Memento</title>
+  <style>
+    /* From extension vscode.github */
+    /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+    .vscode-dark img[src$=\#gh-light-mode-only],
+    .vscode-light img[src$=\#gh-dark-mode-only],
+    .vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+    .vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+      display: none;
+    }
+  </style>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+  <style>
+    .task-list-item {
+      list-style-type: none;
+    }
+
+    .task-list-item-checkbox {
+      margin-left: -20px;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+  </style>
+  <style>
+    :root {
+      --color-note: #0969da;
+      --color-tip: #1a7f37;
+      --color-warning: #9a6700;
+      --color-severe: #bc4c00;
+      --color-caution: #d1242f;
+      --color-important: #8250df;
+    }
+  </style>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-note: #2f81f7;
+        --color-tip: #3fb950;
+        --color-warning: #d29922;
+        --color-severe: #db6d28;
+        --color-caution: #f85149;
+        --color-important: #a371f7;
+      }
+    }
+  </style>
+  <style>
+    .markdown-alert {
+      padding: 0.5rem 1rem;
+      margin-bottom: 16px;
+      color: inherit;
+      border-left: .25em solid #888;
+    }
+
+    .markdown-alert>:first-child {
+      margin-top: 0
+    }
+
+    .markdown-alert>:last-child {
+      margin-bottom: 0
+    }
+
+    .markdown-alert .markdown-alert-title {
+      display: flex;
+      font-weight: 500;
+      align-items: center;
+      line-height: 1
+    }
+
+    .markdown-alert .markdown-alert-title .octicon {
+      margin-right: 0.5rem;
+      display: inline-block;
+      overflow: visible !important;
+      vertical-align: text-bottom;
+      fill: currentColor;
+    }
+
+    .markdown-alert.markdown-alert-note {
+      border-left-color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-note .markdown-alert-title {
+      color: var(--color-note);
+    }
+
+    .markdown-alert.markdown-alert-important {
+      border-left-color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-important .markdown-alert-title {
+      color: var(--color-important);
+    }
+
+    .markdown-alert.markdown-alert-warning {
+      border-left-color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-warning .markdown-alert-title {
+      color: var(--color-warning);
+    }
+
+    .markdown-alert.markdown-alert-tip {
+      border-left-color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-tip .markdown-alert-title {
+      color: var(--color-tip);
+    }
+
+    .markdown-alert.markdown-alert-caution {
+      border-left-color: var(--color-caution);
+    }
+
+    .markdown-alert.markdown-alert-caution .markdown-alert-title {
+      color: var(--color-caution);
+    }
+  </style>
+
+</head>
+
+<body class="vscode-body vscode-light">
+  <hr>
+  <h1 id="memento">Memento</h1>
+  <h3 id="intenção">Intenção</h3>
+  <p>sem violar o encapsulamento, captura e externaliza o estado interno de um objeto, assim, depois ele pode ser
+    restaurado para esse estado.</p>
+  <h3 id="motivação-sem-o-padrão">Motivação sem o Padrão</h3>
+  <p>Sem o uso do padrão, para implementar ações de desfazer ou refazer seria necessário manipular diretamente o estado
+    interno do <em>Tabuleiro</em> levando a quebra do encapsulamento já que outras classes precisariam acessar e
+    modificar os atributos internos de <em>Tabuleiro</em>.</p>
+  <h3 id="exemplo-de-como-ficaria-a-manipulação-direta">Exemplo de como ficaria a manipulação direta</h3>
+  <pre><code class="language-java"><span class="hljs-comment">//lista para armazenar snapshots manuais do estado</span>
+List&lt;Map&lt;Posicao, Casa&gt;&gt; historicoCasas = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+
+<span class="hljs-comment">// Antes de cada jogada, salva manualmente o estado atual</span>
+historicoCasas.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(tabuleiro.getCasas()));
+
+<span class="hljs-comment">// Para desfazer, restaura o último estado salvo manualmente</span>
+<span class="hljs-keyword">if</span> (!historicoCasas.isEmpty()) {
+    Map&lt;Posicao, Casa&gt; estadoAnterior = historicoCasas.remove(historicoCasas.size() - <span class="hljs-number">1</span>);
+    tabuleiro.getCasas().clear();
+    tabuleiro.getCasas().putAll(estadoAnterior);
+}
+</code></pre>
+  <h3 id="uml-sem-o-padrão">UML sem o padrão</h3>
+  <p><img src="../../out/DiagramasIMG/TabuleiroSemMemento.png" alt="out/DiagramasIMG/TabuleiroSemMemento.png"></p>
+  <h3 id="motivação-com-o-padrão">Motivação com o Padrão</h3>
+  <p>Com a aplicação do Memento, o estado do <em>Tabuleiro</em> antes de cada jogada é salvo, dessa maneira, o jogador
+    poderá desfazer ou refazer uma jogada. Ele poderá fazer isso facilmente pois outras partes do código não precisarão
+    conhecer a estrutura interna do tabuleiro.</p>
+  <h3 id="a-classe-tabuleiromemento-armazena-snapshots-do-estado-do-tabuleiro">A classe <em>TabuleiroMemento</em>
+    armazena snapshots do estado do tabuleiro</h3>
+  <pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TabuleiroMemento</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;Posicao, Casa&gt; casasSnapshot;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;Time, Integer&gt; pecasPorTimeSnapshot;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">TabuleiroMemento</span><span class="hljs-params">(Map&lt;Posicao, Casa&gt; casas, Map&lt;Time, Integer&gt; pecasPorTime)</span> {
+        <span class="hljs-built_in">this</span>.casasSnapshot = casas;
+        <span class="hljs-built_in">this</span>.pecasPorTimeSnapshot = pecasPorTime;
+    }
+
+    <span class="hljs-keyword">public</span> Map&lt;Posicao, Casa&gt; <span class="hljs-title function_">getCasasSnapshot</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> casasSnapshot;
+    }
+
+    <span class="hljs-keyword">public</span> Map&lt;Time, Integer&gt; <span class="hljs-title function_">getPecasPorTimeSnapshot</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> pecasPorTimeSnapshot;
+    }
+}
+</code></pre>
+  <h3 id="tabuleiro-cria-e-restaura-mementos">Tabuleiro cria e restaura mementos</h3>
+  <p>O estado das peças por time não é armazenado diretamente no <code>TabuleiroMemento</code>. Em vez disso, ele é
+    restaurado dinamicamente com base no estado das casas, utilizando o <code>TimeMultiton</code>. Isso reduz a
+    duplicação de informações e mantém o encapsulamento.</p>
+  <pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">restaurarMemento</span><span class="hljs-params">(TabuleiroMemento memento)</span> {
+    setCasas(<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(memento.getCasasSnapshot()));
+
+    <span class="hljs-comment">// Restaura o estado das peças por time diretamente do TimeMultiton</span>
+    TimeMultiton.getTimeObjetos().forEach(time -&gt; {
+        time.getPecasDoTime().clear();
+        casas.values().stream()
+            .filter(casa -&gt; casa.getPeca() != <span class="hljs-literal">null</span> &amp;&amp; casa.getPeca().getTime().equals(time.toString()))
+            .forEach(casa -&gt; time.adicionarPecasAoTime(casa.getPeca()));
+    });
+}
+</code></pre>
+  <h3 id="o-historicotabuleiro-armazena-e-gerencia-os-mementos">O <em>HistoricoTabuleiro</em> armazena e gerencia os
+    mementos</h3>
+  <pre><code class="language-java"><span class="hljs-keyword">package</span> main.java.br.com.frameworkPpr.boardgame.padroes.comportamentais.memento;
+
+<span class="hljs-keyword">import</span> java.util.Stack;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HistoricoTabuleiro</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Stack&lt;TabuleiroMemento&gt; desfazer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;&gt;();
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Stack&lt;TabuleiroMemento&gt; refazer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;&gt;();
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">salvar</span><span class="hljs-params">(TabuleiroMemento memento)</span> {
+        desfazer.push(memento);
+        refazer.clear();
+    }
+
+    <span class="hljs-keyword">public</span> TabuleiroMemento <span class="hljs-title function_">desfazer</span><span class="hljs-params">()</span>
+    {
+        <span class="hljs-keyword">if</span> (!desfazer.isEmpty()) {
+            <span class="hljs-type">TabuleiroMemento</span> <span class="hljs-variable">memento</span> <span class="hljs-operator">=</span> desfazer.pop();
+            refazer.push(memento);
+            <span class="hljs-keyword">return</span> memento;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+    
+    <span class="hljs-keyword">public</span> TabuleiroMemento <span class="hljs-title function_">refazer</span><span class="hljs-params">()</span>
+    {
+        <span class="hljs-keyword">if</span> (!refazer.isEmpty()) {
+            <span class="hljs-type">TabuleiroMemento</span> <span class="hljs-variable">memento</span> <span class="hljs-operator">=</span> refazer.pop();
+            desfazer.push(memento);
+            <span class="hljs-keyword">return</span> memento;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">temDesfazer</span><span class="hljs-params">()</span>
+    {
+        <span class="hljs-keyword">return</span> !desfazer.isEmpty();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">temRefazer</span><span class="hljs-params">()</span>
+    {
+        <span class="hljs-keyword">return</span> !refazer.isEmpty();
+    }
+}
+</code></pre>
+  <h3 id="uml-com-memento">UML com memento</h3>
+  <p><img src="../../out/DiagramasIMG/TabuleiroMemento.png" alt="out/DiagramasIMG/TabuleiroMemento.png">&gt;</p>
+  <h3 id="participantes">Participantes</h3>
+  <ol>
+    <li>Memento: TabuleiroMemento -&gt; armazena o estado interno do <em>Tabuleiro</em> para que possa ser
+      posteriormente restaurado;</li>
+    <li>Originator: Tabuleiro -&gt; cria um <em>TabueliroMemento</em> com seu estado atual e pode restaurar seu estado a
+      partir de um memento.</li>
+    <li>Caretaker: HistoricoTabuleiro -&gt; gerencia os mementos criados pelo Tabuleiro para desfazer/refazer;</li>
+  </ol>
+  <p><a href="../../index.html">Voltar Principal</a></p>
+
+
+
+</body>
+
+</html>

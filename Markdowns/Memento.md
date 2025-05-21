@@ -6,7 +6,7 @@ sem violar o encapsulamento, captura e externaliza o estado interno de um objeto
 
 ### Motivação sem o Padrão
 
-Sem o uso do padrão, para implementar ações de desfazer ou refazer seria necessário manipular diretamente o estado interno do *Tabuleiro* levando a quebra do encapsulamento já que outras classes precisariam acessar e modiicar os atributos internos de *Tabuleiro*.
+Sem o uso do padrão, para implementar ações de desfazer ou refazer seria necessário manipular diretamente o estado interno do *Tabuleiro* levando a quebra do encapsulamento já que outras classes precisariam acessar e modificar os atributos internos de *Tabuleiro*.
 
 ### Exemplo de como ficaria a manipulação direta
 
@@ -126,7 +126,9 @@ public class HistoricoTabuleiro {
 
 ### Participantes
 
-1. Memento: TabuleiroMemento -> armazena o estaod interno do *Tabueleiro* para que possa ser posteriormente restaurado;
+1. Memento: TabuleiroMemento -> armazena o estado interno do *Tabuleiro* para que possa ser posteriormente restaurado;
 2. Originator: Tabuleiro -> cria um *TabueliroMemento* com seu estado atual e pode restaurar seu estado a partir de um memento.
 3. Caretaker: HistoricoTabuleiro -> gerencia os mementos criados pelo Tabuleiro para desfazer/refazer;
 
+
+[Voltar Principal](../index.md)
