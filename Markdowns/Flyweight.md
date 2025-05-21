@@ -29,3 +29,5 @@ No contexto do tabuleiro, existem muitas casas, peças e posições que podem se
 - **Cliente:** Solicita objetos às fábricas e utiliza os Flyweights.
 
 ---
+
+[Voltar Principal](../index.md)
