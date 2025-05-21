@@ -108,3 +108,6 @@ public class Tabuleiro {
 2. **Factory:** PecaFactory -> contém o método responsável por criar as instâncias das peças.
 3. **ConcreteFactory:** AnimalFactory (ou outra) -> implementa a lógica de criação específica.
 4. **Client:** Tabuleiro -> classe que utiliza a fábrica para criar objetos.
+
+
+[Voltar Principal](../index.md)
