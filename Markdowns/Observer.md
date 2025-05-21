@@ -1,3 +1,8 @@
+---
+export_on_save:
+    html: true
+---
+
 # Observer
 
 ### Intenção -
@@ -134,3 +139,4 @@ public class VitoriaDerrotaObserver implements Observer, CondicaoDeVitoria{
 2. **Observer:** interface Observer -> ela define o as regras para objetos que desejam ser notificados sobre as mudanças.
 3. **ConcreteObserver:** VitoriaDerrotaObserver, Peca -> implementa a interface Observer e reage as notificações do *Tabuleiro*.
 
+[Voltar Principal](../index.md)
