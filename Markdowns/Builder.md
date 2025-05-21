@@ -1,10 +1,12 @@
 # Builder
 
 ### Intenção
+
 Separa a construção de um objeto complexo da sua representação, assim o mesmo processo de construção pode criar diferentes representações.
 
 ### Motivação sem o Padrão
-Sem o uso do Builder, a construção de um tabuleiro ficaria centralizada em uma única classe, no caso *Tabuleiro*. Isso traria problemas como dificuladades de reutilizar partes da construção e violação do princípio de responsabilidade única, pois o *Tabuleiro* teria que saber tanto como construir quanto como se comportar dificultando a manutenção.
+
+Sem o uso do Builder, a construção de um tabuleiro ficaria centralizada em uma única classe, no caso *Tabuleiro*. Isso traria problemas como dificuldades de reutilizar partes da construção e violação do princípio de responsabilidade única, pois o *Tabuleiro* teria que saber tanto como construir quanto como se comportar dificultando a manutenção.
 
 ### Exemplo de implementação sem o Builder:
 ``` java
@@ -112,3 +114,5 @@ montado;
     - inclui classes que definem as partes constituintes, inclusive as interfaces
 para a montagem das partes no resultado final.
 
+
+[Voltar Principal](../index.md)
