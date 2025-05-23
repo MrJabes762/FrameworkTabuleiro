@@ -46,7 +46,7 @@
 
 ## Descrição 
 
-O projeto em questão, foi desenvolvido pelos discentes do curso de Análise e Desenvolvimento de Sistemas: Jabes Cajazeira, Luis Guilherme e Náthaly Brito, solicitada como Trabalho final da disciplina de Padrões de Projetos do Curso de Análise e Desenvolvimento de Sistemas, colocando em prática todos os conceitos referentes á matéria em questão, assim como, trabalho em equipe.
+O projeto em questão, foi desenvolvido pelos discentes do curso de Análise e Desenvolvimento de Sistemas: Jabes Cajazeira, Luis Guilherme e Náthaly Brito, solicitada como Trabalho final da disciplina de Padrões de Projetos, colocando em prática todos os conceitos referentes á matéria em questão, assim como, trabalho em equipe.
 
 ---
 
