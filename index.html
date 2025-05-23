@@ -1,210 +1,1176 @@
-<!DOCTYPE html><html><head>
-      <title>index</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
-      
-      
-      
-      
-      
-      <style>
-      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
-/* Please visit the URL below for more information: */
-/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-/* Please visit the URL below for more information: */
-/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-.markdown-preview.markdown-preview p,
-.markdown-preview.markdown-preview li,
-.markdown-preview.markdown-preview dd {
-  text-align: justify;
-  hyphens: auto;
-}
-.markdown-preview.markdown-preview body {
-  counter-reset: figures;
-  counter-reset: tables;
-}
-.markdown-preview.markdown-preview figure {
-  counter-increment: figures;
-  text-align: center;
-}
-.markdown-preview.markdown-preview figcaption {
-  font-style: normal;
-  font-weight: bold;
-  display: inherit;
-  text-align: center;
-  font-size: 90%;
-}
-.markdown-preview.markdown-preview figcaption:before {
-  content: 'Figura ' counter(figures) ' - ';
-}
-.markdown-preview.markdown-preview table {
-  counter-increment: tables;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-}
-.markdown-preview.markdown-preview table > caption {
-  font-style: normal;
-  font-weight: bold;
-  caption-side: top;
-  text-align: center;
-  font-size: 90%;
-  background: none;
-  border-bottom: none;
-  color: #172b4d;
-}
-.markdown-preview.markdown-preview table > caption:before {
-  content: 'Tabela ' counter(tables) ' - ';
-}
+<!DOCTYPE html>
+<html>
 
-      </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function () {
-    // your code here
-  });
-</script></head><body for="html-export">
-    
-    
-      <div class="crossnote markdown-preview  ">
-      
-<h1 id="framework-de-construção-de-tabuleiros">Framework de Construção de tabuleiros </h1>
-<p><strong><code>Equipe 5 - Jabes Cajazeira, Luis Guilherme, Náthaly Brito</code></strong></p>
-<h2 id="índice">Índice </h2>
-<ul>
-<li><a href="#framework-de-constru%C3%A7%C3%A3o-de-tabuleiros">Framework de Construção de tabuleiros</a>
-<ul>
-<li><a href="#%C3%ADndice">Índice</a></li>
-<li><a href="#quadro-de-versionamento">Quadro de Versionamento</a></li>
-<li><a href="#descri%C3%A7%C3%A3o">Descrição</a></li>
-<li><a href="#objetivo">Objetivo</a></li>
-<li><a href="#descri%C3%A7%C3%A3o-do-processo">Descrição do Processo</a>
-<ul>
-<li><a href="#estrutura-do-reposit%C3%B3rio">Estrutura do Repositório</a></li>
-<li><a href="#padr%C3%B5es-de-projeto">Padrões de Projeto</a>
-<ul>
-<li><a href="#padr%C3%B5es-comportamentais">Padrões Comportamentais</a></li>
-<li><a href="#padr%C3%B5es-criacionais">Padrões Criacionais</a></li>
-<li><a href="#padr%C3%B5es-estruturais">Padrões Estruturais</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#considera%C3%A7%C3%B5es-t%C3%A9cnicas">Considerações Técnicas</a></li>
-<li><a href="#refer%C3%AAncias">Referências</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="quadro-de-versionamento">Quadro de Versionamento </h2>
-<table>
-<thead>
-<tr>
-<th>Data</th>
-<th>Versão</th>
-<th>Alteração</th>
-<th>Autor/Revisor</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>----</td>
-<td>1</td>
-<td>-----------</td>
-<td>---------------</td>
-</tr>
-<tr>
-<td></td>
-<td>0</td>
-<td>Inicio no projeto</td>
-<td>Jabes Cajazeira</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="descrição">Descrição </h2>
-<p>O projeto em questão, foi desenvolvido pelos discentes do curso de Análise e Desenvolvimento de Sistemas: Jabes Cajazeira, Luis Guilherme e Náthaly Brito, solicitada pela disciplina de Padrões de Projetos como forma de evidenciar de forma pratica todos os conceitos referentes á matéria em questão.</p>
-<hr>
-<h2 id="objetivo">Objetivo </h2>
-<p>No tocante ao objetivo, tal projeto consistia em elaborar um Framework de Tabuleiro aplicando técnicas inerentes aos Padrões de Projeto em sua maioria descritos pelo GOF <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> e outras literaturas como <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> K19 - escolha dos autores, conforme o contexto e a necessidade. Além disso, como ja podemos deduzir, construir algo desta natureza requer a abstração e capacidade de diferenciar um framework de sua utilização (trazer uma referencia que diferencie), como se não bastasse isso, tal abstração deve ser a mais genérica possível, de modo a, ser aplicável a diferentes tabuleiros.</p>
-<p>Com base nisso, para fundamentar a sua construção, é do objetivo que seja baseado no jogo <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> Selva - devido a variedade de aplicações e possibilidade de aplicações dos padrões. Nesse contexto, o Framework deve ser funcional tanto para o que foi baseado, quanto para outro de escolha dos autores e o framework terá que se adaptar a esse novo contexto.</p>
-<hr>
-<h2 id="descrição-do-processo">Descrição do Processo </h2>
-<h3 id="estrutura-do-repositório">Estrutura do Repositório </h3>
-<table>
-<thead>
-<tr>
-<th>Diretório</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>src/frameworkPpr/game</code></td>
-<td><strong>Diretório que contem o codigo fonte da aplicação direcionado as coisas mais comuns do game ligados ao framework</strong></td>
-</tr>
-<tr>
-<td><code>src/framework/padroes</code></td>
-<td><strong>Diretório que contem o codigo fonte do framework com a aplicação dos padrões de projeto</strong></td>
-</tr>
-<tr>
-<td><code>src/jogo</code></td>
-<td><strong>Diretorio que contem o código fonte direcionado a implementação do Selva com o uso do Framework</strong></td>
-</tr>
-</tbody>
-</table>
-<h3 id="padrões-de-projeto">Padrões de Projeto </h3>
-<p>Neste cenário, as abstrações foram divididas em parte framework e parte jogo concentrando boa parte dos padrões de projeto em sua construção seguindo as literaturas citadas nos objetivos.</p>
-<h4 id="padrões-comportamentais">Padrões Comportamentais </h4>
-<ul>
-<li><a href="Markdowns/Command.md">Command</a></li>
-<li><a href="Markdowns/Memento.md">Memento</a></li>
-<li><a href="Markdowns/Observer.md">Observer</a></li>
-<li><a href="Markdowns/State.md">State</a></li>
-<li><a href="Markdowns/Strategy.md">Strategy</a></li>
-</ul>
-<h4 id="padrões-criacionais">Padrões Criacionais </h4>
-<ul>
-<li><a href="Markdowns/Builder.md">Builder</a></li>
-<li><a href="Markdowns/Factory.md">Factory</a></li>
-<li><a href="Markdowns/Multiton.md">Multiton</a></li>
-<li><a href="Markdowns/Singleton.md">Singleton</a></li>
-</ul>
-<h4 id="padrões-estruturais">Padrões Estruturais </h4>
-<ul>
-<li><a href="Markdowns/Decorator.md">Decorator</a></li>
-<li><a href="Markdowns/Fa%C3%A7ade.md">Façade</a></li>
-<li><a href="Markdowns/Flyweight.md">Flyweight</a></li>
-<li><a href="Markdowns/Proxy.md">Proxy</a></li>
-</ul>
-<hr>
-<h2 id="considerações-técnicas">Considerações Técnicas </h2>
-<p>O Framework em questão foi implementado de acordo com a interpretação dos autores contemplando ao total 13 padrões de projetos aplicados em sua construção. Dessa maneira, ele está todo elaborado em consideração ao Selva, e além disso, temos também uma aplicação sua, para a construção de um Jogo de Batalha Naval.</p>
-<ul>
-<li><a href="Markdowns/BatalhaNavalComOFramework.md">Batalha Naval</a></li>
-</ul>
-<h2 id="referências">Referências </h2>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>GAMMA, Erich. et al. Padrões de projetos: Soluções reutilizáveis de software orientados a objetos Bookman editora, 2009. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>KASPCHUK, Alexandre; PLEIN, Tiago. K19 - Design Patterns em Java. São Paulo: K19 Treinamentos, 2012. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn3" class="footnote-item"><p>Disponivel em: <a href="https://brainking.com/pt/GameRules?tp=56">https://brainking.com/pt/GameRules?tp=56</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
+<head>
+  <title>index</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      </div>
-      
-      
-    
-    
-    
-    
-    
-    
-  
-    </body></html>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css">
+
+
+
+
+
+  <style>
+    code[class*=language-],
+    pre[class*=language-] {
+      color: #333;
+      background: 0 0;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      line-height: 1.4;
+      -moz-tab-size: 8;
+      -o-tab-size: 8;
+      tab-size: 8;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none
+    }
+
+    pre[class*=language-] {
+      padding: .8em;
+      overflow: auto;
+      border-radius: 3px;
+      background: #f5f5f5
+    }
+
+    :not(pre)>code[class*=language-] {
+      padding: .1em;
+      border-radius: .3em;
+      white-space: normal;
+      background: #f5f5f5
+    }
+
+    .token.blockquote,
+    .token.comment {
+      color: #969896
+    }
+
+    .token.cdata {
+      color: #183691
+    }
+
+    .token.doctype,
+    .token.macro.property,
+    .token.punctuation,
+    .token.variable {
+      color: #333
+    }
+
+    .token.builtin,
+    .token.important,
+    .token.keyword,
+    .token.operator,
+    .token.rule {
+      color: #a71d5d
+    }
+
+    .token.attr-value,
+    .token.regex,
+    .token.string,
+    .token.url {
+      color: #183691
+    }
+
+    .token.atrule,
+    .token.boolean,
+    .token.code,
+    .token.command,
+    .token.constant,
+    .token.entity,
+    .token.number,
+    .token.property,
+    .token.symbol {
+      color: #0086b3
+    }
+
+    .token.prolog,
+    .token.selector,
+    .token.tag {
+      color: #63a35c
+    }
+
+    .token.attr-name,
+    .token.class,
+    .token.class-name,
+    .token.function,
+    .token.id,
+    .token.namespace,
+    .token.pseudo-class,
+    .token.pseudo-element,
+    .token.url-reference .token.variable {
+      color: #795da3
+    }
+
+    .token.entity {
+      cursor: help
+    }
+
+    .token.title,
+    .token.title .token.punctuation {
+      font-weight: 700;
+      color: #1d3e81
+    }
+
+    .token.list {
+      color: #ed6a43
+    }
+
+    .token.inserted {
+      background-color: #eaffea;
+      color: #55a532
+    }
+
+    .token.deleted {
+      background-color: #ffecec;
+      color: #bd2c00
+    }
+
+    .token.bold {
+      font-weight: 700
+    }
+
+    .token.italic {
+      font-style: italic
+    }
+
+    .language-json .token.property {
+      color: #183691
+    }
+
+    .language-markup .token.tag .token.punctuation {
+      color: #333
+    }
+
+    .language-css .token.function,
+    code.language-css {
+      color: #0086b3
+    }
+
+    .language-yaml .token.atrule {
+      color: #63a35c
+    }
+
+    code.language-yaml {
+      color: #183691
+    }
+
+    .language-ruby .token.function {
+      color: #333
+    }
+
+    .language-markdown .token.url {
+      color: #795da3
+    }
+
+    .language-makefile .token.symbol {
+      color: #795da3
+    }
+
+    .language-makefile .token.variable {
+      color: #183691
+    }
+
+    .language-makefile .token.builtin {
+      color: #0086b3
+    }
+
+    .language-bash .token.keyword {
+      color: #0086b3
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #000
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #5c5c5c
+    }
+
+    html body strong {
+      color: #000
+    }
+
+    html body del {
+      color: #5c5c5c
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #5c5c5c;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #000
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #000;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #000;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #000;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #5c5c5c
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      left: 300px;
+      width: calc(100% - 300px);
+      padding: 2em calc(50% - 457px - 300px / 2);
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    @media screen and (max-width:1274px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+    .markdown-preview.markdown-preview p,
+    .markdown-preview.markdown-preview li,
+    .markdown-preview.markdown-preview dd {
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .markdown-preview.markdown-preview body {
+      counter-reset: figures;
+      counter-reset: tables;
+    }
+
+    .markdown-preview.markdown-preview figure {
+      counter-increment: figures;
+      text-align: center;
+    }
+
+    .markdown-preview.markdown-preview figcaption {
+      font-style: normal;
+      font-weight: bold;
+      display: inherit;
+      text-align: center;
+      font-size: 90%;
+    }
+
+    .markdown-preview.markdown-preview figcaption:before {
+      content: 'Figura ' counter(figures) ' - ';
+    }
+
+    .markdown-preview.markdown-preview table {
+      counter-increment: tables;
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .markdown-preview.markdown-preview table>caption {
+      font-style: normal;
+      font-weight: bold;
+      caption-side: top;
+      text-align: center;
+      font-size: 90%;
+      background: none;
+      border-bottom: none;
+      color: #172b4d;
+    }
+
+    .markdown-preview.markdown-preview table>caption:before {
+      content: 'Tabela ' counter(tables) ' - ';
+    }
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <h1 id="framework-de-construção-de-tabuleiros-v-23">Framework de Construção de Tabuleiros V 2.3 </h1>
+    <p><em><code>Por (Equipe 5): Jabes Cajazeira, Luis Guilherme, Náthaly Brito</code></em></p>
+    <h2 id="índice">Índice </h2>
+    <ul>
+      <li><a href="#framework-de-constru%C3%A7%C3%A3o-de-tabuleiros-v-23">Framework de Construção de Tabuleiros V
+          2.3</a>
+        <ul>
+          <li><a href="#%C3%ADndice">Índice</a></li>
+          <li><a href="#quadro-de-versionamento">Quadro de Versionamento</a></li>
+          <li><a href="#descri%C3%A7%C3%A3o">Descrição</a></li>
+          <li><a href="#objetivo">Objetivo</a></li>
+          <li><a href="#descri%C3%A7%C3%A3o-do-processo">Descrição do Processo</a>
+            <ul>
+              <li><a href="#estrutura-do-projeto">Estrutura do Projeto</a></li>
+              <li><a href="#padr%C3%B5es-de-projeto">Padrões de Projeto</a>
+                <ul>
+                  <li><a href="#padr%C3%B5es-comportamentais">Padrões Comportamentais</a></li>
+                  <li><a href="#padr%C3%B5es-criacionais">Padrões Criacionais</a></li>
+                  <li><a href="#padr%C3%B5es-estruturais">Padrões Estruturais</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#considera%C3%A7%C3%B5es-t%C3%A9cnicas">Considerações Técnicas</a></li>
+          <li><a href="#refer%C3%AAncias">Referências</a></li>
+        </ul>
+      </li>
+    </ul>
+    <hr>
+    <h2 id="quadro-de-versionamento">Quadro de Versionamento </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Versão</th>
+          <th>Alteração</th>
+          <th>Autor/Revisor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>----</td>
+          <td>1</td>
+          <td>-----------</td>
+          <td>---------------</td>
+        </tr>
+        <tr>
+          <td>28/03/2025</td>
+          <td>0</td>
+          <td>
+            <code>Inicio da Modelagem: Aplicação do Padrões Criacionais Multiton (definição dos times e movimentações) e Singleton (definição de um ponto de acesso do tabuleiro); Criação da documentação do Multiton </code>
+          </td>
+          <td>Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td>29/03/2025</td>
+          <td>01</td>
+          <td><code>Atualização dos Padrões; Documentação do Singleton</code></td>
+          <td>Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td>31/03/2025</td>
+          <td>02</td>
+          <td>
+            <code>Modelagem das Casas, Posições, Peças, Tabuleiro - com Ações; Aplicação do Padrão Strategy (calculo de Movimentos possíveis) e Factory (criação de peças)</code>
+          </td>
+          <td>Luis Guilherme</td>
+        </tr>
+        <tr>
+          <td>02/04/2025</td>
+          <td>03</td>
+          <td>
+            <code>Modelagem dos Padrões Observer(gerenciamento de vitoria e derrota) + Strategy; Inclusão do Multiton ás novas logicas e padrões existentes</code>
+          </td>
+          <td>Náthaly Brito e Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td>04/04/2025</td>
+          <td>04</td>
+          <td>
+            <code>Refatorações no Gerenciamento da vitoria / derrota; Otimização de Lógicas do Tabuleiro; Finalização das Adaptações do Multiton</code>
+          </td>
+          <td>Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td>10/04/2025</td>
+          <td>05</td>
+          <td>
+            <code>Refatorações no Padrão Singleton, Aplicação do Padrão Proxy de Proteção (proteger a realização de ações do tabuleiro e validar a possibilidade das ações)</code>
+          </td>
+          <td>Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td>13/04/2025</td>
+          <td>06</td>
+          <td>
+            <code>Atualização das documentações dos Padrões Existentes e Refatoração de Diretórios; Otimização de Lógicas dos Padrões, Elaboração inicial da documentação do Proxy e Revisão das Documentações</code>
+          </td>
+          <td>Náthaly Brito e Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td>--------------</td>
+          <td>2</td>
+          <td>--------------------------------------------</td>
+          <td>--------------------</td>
+        </tr>
+        <tr>
+          <td>20/04/2025</td>
+          <td>00</td>
+          <td>
+            <code> Refatoração de diretórios do Projeto, Implementação de Novos Padrões: Builder (Construção do Tabuleiro), Command (Padronização dos Movimentos), Memento (Salva e Recuperação Tabuleiro), Decorator (Decoração das Peças) ; Refatoração do Multiton; Refatoração do Observer, Aplicação e Documentação do Façade; Otimização do Multiton</code>
+          </td>
+          <td>Luiz Guilherme, Jabes Cajazeira e Náthaly Brito</td>
+        </tr>
+        <tr>
+          <td>21/04/2025</td>
+          <td>01</td>
+          <td>
+            <code>Atualização do Proxy, Implementação inicial do Selva; Aplicação do Flyweight Pattern, State Pattern / Documentação; Clean Code, Refatoração do Singleton, Revisão da Documentação, </code>
+          </td>
+          <td>Jabes Cajazeira, Náthaly Brito, Luiz Guilherme</td>
+        </tr>
+        <tr>
+          <td>22/04/2025</td>
+          <td>02</td>
+          <td>
+            <code>Documentação do Decorator, Atualização da Documentação dos Padrões; Atualização do Memento, Ajuste no Observer Revisão do Decorator, Atualização da Implementação do Selva; Documentação do Padrão Flyweight, Atualização Da documentação dos Padrões: Builder, Command, Façade e Memento; Otimização da verificação da vitória/derrota, Alinhamento e Formatação das Documentações Gerais  </code>
+          </td>
+          <td>Luiz Guilherme, Náthaly Brito, Jabes Cajazeira</td>
+        </tr>
+        <tr>
+          <td><strong>23/04/2025</strong></td>
+          <td><strong>03</strong></td>
+          <td>
+            <strong><code>Atualizações na Implementação do Selva, Revisão da Documentação dos Padrões, Finalização da documentação do Batalha Naval, Adição de Códigos Boilerplate; Otimizações, Atualizações e Revisões Gerais de Códigos, Documentação inicial da Batalha Naval, Atualização do Memento; Revisão da Documentação do Framework </code></strong>
+          </td>
+          <td><strong>Luiz Guilherme, Jabes Cajazeira, Náthaly Brito</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h2 id="descrição">Descrição </h2>
+    <p>O projeto em questão, foi desenvolvido pelos discentes do curso de Análise e Desenvolvimento de Sistemas: Jabes
+      Cajazeira, Luis Guilherme e Náthaly Brito, solicitada como Trabalho final da disciplina de Padrões de Projetos do
+      Curso de Análise e Desenvolvimento de Sistemas, colocando em prática todos os conceitos referentes á matéria em
+      questão, assim como, trabalho em equipe.</p>
+    <hr>
+    <h2 id="objetivo">Objetivo </h2>
+    <p>O presente projeto tem como objetivo desenvolver um framework de tabuleiro que aplique técnicas associadas aos
+      padrões de projeto, conforme descrito por Gamma et al. (1994) <sup class="footnote-ref"><a href="#fn1"
+          id="fnref1">[1]</a></sup>, bem como outras literaturas especializadas, como os materiais da K19 Treinamentos
+      <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>. A escolha dos padrões será orientada pelo
+      contexto e pelas necessidades específicas do projeto.</p>
+    <p>É fundamental compreender a distinção entre a construção de um framework e sua utilização. Segundo a DevMedia, um
+      framework pode ser visualizado como um "esqueleto" de uma aplicação que pode ser customizado pelo programador e
+      aplicado a um conjunto de aplicações de um mesmo domínio. Ele descreve a arquitetura de um sistema orientado a
+      objetos, os tipos de objetos e as interações entre os mesmos, promovendo a reutilização de subsistemas e
+      contribuindo para uma melhor qualidade do software <sup class="footnote-ref"><a href="#fn3"
+          id="fnref3">[3]</a></sup>.</p>
+    <p>Para fundamentar a construção do framework, será utilizado como base o jogo Selva, também conhecido como Xadrez
+      da Selva. Este jogo oferece uma variedade de aplicações e possibilidades para a implementação de padrões de
+      projeto <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>. O framework desenvolvido deverá ser
+      funcional tanto para o jogo Selva quanto para outros jogos de tabuleiro escolhidos pelos autores, demonstrando sua
+      adaptabilidade a diferentes contextos.</p>
+    <hr>
+    <h2 id="descrição-do-processo">Descrição do Processo </h2>
+    <h3 id="estrutura-do-projeto">Estrutura do Projeto </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Diretório</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>src/frameworkPpr/game</code></td>
+          <td><strong>Diretório que contem o código fonte da aplicação direcionado as coisas mais comuns do game ligados
+              ao framework</strong></td>
+        </tr>
+        <tr>
+          <td><code>src/framework/padroes</code></td>
+          <td><strong>Diretório que contem o código fonte do framework com a aplicação dos padrões de projeto</strong>
+          </td>
+        </tr>
+        <tr>
+          <td><code>src/jogo</code></td>
+          <td><strong>Diretório que contem o código fonte direcionado a implementação do Selva com o uso do
+              Framework</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="padrões-de-projeto">Padrões de Projeto </h3>
+    <p>Neste cenário, as abstrações foram divididas em parte framework e parte jogo concentrando boa parte dos padrões
+      de projeto em sua construção seguindo as literaturas citadas nos objetivos.</p>
+    <h4 id="padrões-comportamentais">Padrões Comportamentais </h4>
+    <ul>
+      <li><a href="resources/static /Command.html">Command</a></li>
+      <li><a href="resources/static /Memento.html">Memento</a></li>
+      <li><a href="resources/static /Observer.html">Observer</a></li>
+      <li><a href="resources/static /State.html">State</a></li>
+      <li><a href="resources/static /Strategy.html">Strategy</a></li>
+    </ul>
+    <h4 id="padrões-criacionais">Padrões Criacionais </h4>
+    <ul>
+      <li><a href="resources/static /Builder.html">Builder</a></li>
+      <li><a href="resources/static /Factory.html">Factory</a></li>
+      <li><a href="resources/static /Multiton.html">Multiton</a></li>
+      <li><a href="resources/static /Singleton.html">Singleton</a></li>
+    </ul>
+    <h4 id="padrões-estruturais">Padrões Estruturais </h4>
+    <ul>
+      <li><a href="resources/static /Decorator.html">Decorator</a></li>
+      <li><a href="resources/static /Façade.html">Façade</a></li>
+      <li><a href="resources/static /Flyweight.html">Flyweight</a></li>
+      <li><a href="resources/static /Proxy.html">Proxy</a></li>
+    </ul>
+    <hr>
+    <h2 id="considerações-técnicas">Considerações Técnicas </h2>
+    <p>O Framework em questão foi implementado de acordo com a interpretação e autenticidade dos autores contemplando ao
+      total 13 padrões de projetos aplicados em sua construção. Dessa maneira, ele foi elaborado com base no Jogo Selva,
+      e além disso, há também uma aplicabilidade aderente ao Jogo de Batalha Naval.</p>
+    <ul>
+      <li><a href="resources/static /BatalhaNavalComOFramework.html">Batalha Naval</a></li>
+    </ul>
+    <hr>
+    <h2 id="referências">Referências </h2>
+    <hr class="footnotes-sep">
+    <section class="footnotes">
+      <ol class="footnotes-list">
+        <li id="fn1" class="footnote-item">
+          <p>GAMMA, Erich. et al. Padrões de projetos: Soluções reutilizáveis de software orientados a objetos Bookman
+            editora, 2009. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+        </li>
+        <li id="fn2" class="footnote-item">
+          <p>KASPCHUK, Alexandre; PLEIN, Tiago. K19 - Design Patterns em Java. São Paulo: K19 Treinamentos, 2012. <a
+              href="#fnref2" class="footnote-backref">↩︎</a></p>
+        </li>
+        <li id="fn3" class="footnote-item">
+          <p>DEVMEDIA. Frameworks e Padrões de Projeto. 2006. Disponível em: <a
+              href="https://www.devmedia.com.br/frameworks-e-padroes-de-projeto/1111">https://www.devmedia.com.br/frameworks-e-padroes-de-projeto/1111</a>.
+            Acesso em: 22 maio 2025. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+        </li>
+        <li id="fn4" class="footnote-item">
+          <p>RACHUNEK, Filip. Regras do jogo: Selva. BrainKing, 2002–2025. Disponível em: <a
+              href="https://brainking.com/pt/GameRules?tp=56">https://brainking.com/pt/GameRules?tp=56</a>. Acesso em:
+            22 maio 2025. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+        </li>
+      </ol>
+    </section>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
