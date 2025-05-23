@@ -92,4 +92,4 @@ operação(ões) no Receiver.
     - sabe como executar as operações associadas a uma solicitação. Qualquer
 classe pode funcionar como um Receiver.
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

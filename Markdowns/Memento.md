@@ -131,4 +131,4 @@ public class HistoricoTabuleiro {
 3. Caretaker: HistoricoTabuleiro -> gerencia os mementos criados pelo Tabuleiro para desfazer/refazer;
 
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

@@ -55,4 +55,4 @@
     - **`TabuleiroMemento`:** Permite salvar e restaurar o estado do tabuleiro.
   - Não têm conhecimento do Façade; isto é, não mantêm referências para ele.
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

@@ -77,4 +77,4 @@ Com o Decorator, é possível estender funcionalidades das peças de forma flex�
 4. **Cliente:** Código que utiliza as peças decoradas.
 
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

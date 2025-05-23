@@ -124,4 +124,4 @@ public interface EstadoJogo {
 3. **Context:** ContextoJogo -> Classe que mantém uma referência para o estado atual e delega as operações para o estado corrente.
 4. **Client:** Tabuleiro/TabuleiroProxySecurity -> Classes que utilizam o ContextoJogo para controlar o fluxo do jogo, delegando as operações de estado.
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

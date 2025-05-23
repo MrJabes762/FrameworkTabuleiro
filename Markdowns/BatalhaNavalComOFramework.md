@@ -215,4 +215,4 @@ tabuleiro.restaurarMemento(memento);
 
 O framework permite implementar Batalha Naval de forma flexível, reaproveitando padrões GoF para modularidade, manutenção e extensibilidade. Basta especializar as classes de Builder, Factory, Strategy e Observer conforme as regras do jogo desejado.
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

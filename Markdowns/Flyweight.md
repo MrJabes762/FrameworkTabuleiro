@@ -30,4 +30,4 @@ No contexto do tabuleiro, existem muitas casas, peças e posições que podem se
 
 ---
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

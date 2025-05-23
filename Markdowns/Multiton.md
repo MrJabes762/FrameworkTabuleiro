@@ -107,5 +107,5 @@ Com o Multiton, declaramos instâncias únicas para representar os times, que po
 1. **Multiton:** Classe `Time` -> mantém instâncias únicas para cada nome de time;
 2. **Client:** (Tabuleiro), Peca -> classes que utilizam as instâncias do multiton.
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)
 

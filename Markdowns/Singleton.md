@@ -176,4 +176,4 @@ public class GameSession {
 2. **Client:**
     Classes que utilizam a instância única da sessão do jogo para acessar ou modificar seu estado. Exemplos de clients incluem as classes que representam os **jogadores**, **regras do jogo** e qualquer outro componente que precise interagir com a sessão centralizada do jogo. Esses clients acessam a instância de `GameSession` por meio do método estático `getInstance()`.
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)

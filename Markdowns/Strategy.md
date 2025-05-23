@@ -94,4 +94,4 @@ public class MovimentoRei implements MovimentoStrategy {
 2. **ConcretStrategy:** serão os métodos que implementam a interace MovimentoStrategy que criarão a lógica específica de cada peça;
 3. **Context:** Peca -> contém a referência para um objeto MovimentoStrategy, delega a execução do método *calcularMovimentosPossiveis* para a estratégia associada (ConcretStrategy).
 
-[Voltar Principal](../index.md)
+[Voltar Principal](../README.md)
